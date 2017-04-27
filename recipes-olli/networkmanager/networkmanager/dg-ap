@@ -1,0 +1,17 @@
+[connection]
+id=dg-ap
+uuid=19d94f2b-7af7-4a96-81e5-8cbe7384846f
+type=wifi
+autoconnect=false
+timestamp=1492607433
+
+[wifi]
+ssid=dg-ap
+mode=ap
+
+[ipv6]
+method=auto
+
+[ipv4]
+method=shared
+
