@@ -3,7 +3,7 @@ DESCRIPTION = "this is a description "
 LICENSE = "Olli"
 LIC_FILES_CHKSUM = "file://README.md;md5=db578ad8efc88729badff79cf47aff39"
 HOMEPAGE = "https://github.com/olli-ai/wifi-manager"
-SRCREV = "46c56c56ebbb87d6c4b46d66d56f9c31bdeb4385"
+SRCREV = "ff7332a2c8e674ec1e892d608cf4c448f578fd26"
 SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh \
 			file://beeeep.mp3 \
 "
@@ -12,22 +12,19 @@ RDEPENDS_${PN} += " bash  "
 
 S= "${WORKDIR}/git"
 
-inherit npm-base
+inherit npm-base systemd
 
 do_install_append() {
 	install -d ${D}${sysconfdir}/wifi_manager
-	install -d ${D}${sysconfdir}/wifi_manager
 	install -d ${D}${sysconfdir}/sound
-	install -d ${D}${sysconfdir}/olli_wifi
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}/NetworkManager/
 	install -d ${D}${sysconfdir}/NetworkManager/system-connections
 
 	oe_runnpm --prefix ${WORKDIR}/git/ install
 
-	install -m 0775 ${WORKDIR}/git/conf/wifi-ap1 ${D}${sysconfdir}/NetworkManager/system-connections/dg-ap
-	install -m 0775 ${WORKDIR}/git/scripts/open-wifi.sh ${D}${sysconfdir}/olli_wifi/open-wifi.sh
-	install -m 0775 ${WORKDIR}/git/olli_wifi.service ${D}${systemd_unitdir}/system/olli_wifi.service
+	install -m 0775 ${WORKDIR}/git/scripts/open-wifi.sh ${D}${sysconfdir}/wifi_manager/open-wifi.sh
+	install -m 0644 ${WORKDIR}/git/olli_wifi.service ${D}${systemd_unitdir}/system/olli_wifi.service
 	install -m 0775 ${WORKDIR}/git/index.html ${D}${sysconfdir}/wifi_manager/index.html
 	install -m 0775 ${WORKDIR}/git/wifi_list.json ${D}${sysconfdir}/wifi_manager/wifi_list.json
 	install -m 0775 ${WORKDIR}/git/index.js ${D}${sysconfdir}/wifi_manager/index.js

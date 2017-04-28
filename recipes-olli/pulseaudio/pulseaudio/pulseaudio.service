@@ -1,0 +1,13 @@
+[Unit]
+Description=Sound Service
+After=alsa-restore.service
+
+[Service]
+# Note that notify will only work if --daemonize=no
+Type=notify
+ExecStart=/usr/bin/pulseaudio --daemonize=no
+Restart=on-failure
+
+[Install]
+Also=pulseaudio.socket
+WantedBy=default.target
