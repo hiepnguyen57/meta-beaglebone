@@ -15,7 +15,7 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'pulseaudio', 'pulsea
                    flac \
 "
 PACKAGECONFIG[ffmpeg] = "--with-ffmpeg=yes,--with-ffmpeg=no,ffmpeg,"
-PACKAGECONFIG[pulseaudio] = "--with-pulseaudio=dyn,--with-pulseaudio=no,pulseaudio,"
+PACKAGECONFIG[pulseaudio] = "--with-pulseaudio=yes,--with-pulseaudio=no,pulseaudio,"
 PACKAGECONFIG[alsa] = "--with-alsa=dyn,--with-alsa=no,alsa-lib,"
 PACKAGECONFIG[wavpack] = "--with-wavpack=dyn,--with-wavpack=no,wavpack,"
 PACKAGECONFIG[flac] = "--with-flac=dyn,--with-flac=no,flac,"

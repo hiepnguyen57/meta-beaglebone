@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://README.md;md5=756173123cb8cc19c27506ca942ebe82"
 HOMEPAGE = "https://github.com/olli-ai/olli-daemon/"
 SRCREV = "5016b1fb797ed39782ae8dd6d7f9485b40fa6c7c"
 SRC_URI = "git://git@github.com/olli-ai/olli-daemon.git;protocol=ssh"
-DEPENDS += " glib-2.0 dbus libsoc"
+DEPENDS = " glib-2.0 dbus libsoc"
 
 S= "${WORKDIR}/git"
 
