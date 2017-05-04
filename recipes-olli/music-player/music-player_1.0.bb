@@ -3,7 +3,7 @@ DESCRIPTION = "this is a description "
 LICENSE = "Olli"
 LIC_FILES_CHKSUM = "file://README.md;md5=5f3c3c642840155e947abe32e9d35c44"
 HOMEPAGE = "https://github.com/olli-ai/music-player"
-SRCREV = "10a36e8dcd600f83c466865500cfdc57b7962f56"
+SRCREV = "482a887860046bc391a566ffa9dfe734dacb59e8"
 SRC_URI = "git://git@github.com/olli-ai/music-player.git;protocol=ssh"
 DEPENDS += " glib-2.0 dbus libsoc glibc"
 
