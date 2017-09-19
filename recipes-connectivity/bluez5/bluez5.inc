@@ -23,6 +23,7 @@ SRC_URI = "\
     file://run-ptest \
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '', 'file://0001-Allow-using-obexd-without-systemd-in-the-user-sessio.patch', d)} \
     file://0001-tests-add-a-target-for-building-tests-without-runnin.patch \
+    file://50-bluetooth-hci-auto-poweron.rules \
 "
 S = "${WORKDIR}/bluez-${PV}"
 
@@ -48,6 +49,8 @@ NOINST_TOOLS = " \
 
 do_install_append() {
 	install -d ${D}${INIT_D_DIR}
+  install -d ${D}${sysconfdir}/udev/rules.d/
+  install -m 0644 ${WORKDIR}/50-bluetooth-hci-auto-poweron.rules ${D}${sysconfdir}/udev/rules.d/
 	install -m 0755 ${WORKDIR}/init ${D}${INIT_D_DIR}/bluetooth
 
 	install -d ${D}${sysconfdir}/bluetooth/
