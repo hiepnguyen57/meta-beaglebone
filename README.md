@@ -13,9 +13,9 @@ The 4.4.30 Linux kernel comes from the olli-linux repository.
 
 The u-boot version is 2014.04
 
-The root file system base on meta-ti layer
+The root file system base on `meta-ti` layer
 
-Device tree binatries are generated and installed that support
+Device tree binatries are generated and installed that support:
 
 1. Beaglebone black (am335x-boneblack.dtb)
 2. Beaglebone green wireless (am335x-bonegreen-wireless.dtb)
@@ -40,8 +40,9 @@ texinfo
 ```
 
 * For 16.04 you also need to install python 2.7 package that the Yocto 2.2 branch requires
- #python2.7
-
+```
+ python2.7
+```
 And then create a link for it in `/usr/bin`
 
 ```
@@ -49,10 +50,11 @@ And then create a link for it in `/usr/bin`
 ```
 
 * For all version of Ubuntu, you should change the default Ubuntu shell from `dash` to `bash` by running this command from a shell
+
 ```
-# sudo dpkg-reconfigure dash
+sudo dpkg-reconfigure dash
 ```
-Choose #No to dash when prompted
+Choose `No`to dash when prompted
 
 ## Clone the repository
 
@@ -75,7 +77,7 @@ dark@hiepnguyen:~$ cd poky
 dark@hiepnguyen:~/yocto/poky$ git clone -b morty git://git.openembedded.org/meta-openembedded
 ```
 
-* Clone the `meta-olli` repository
+### Clone the `meta-olli` repository
 
 ```
 dark@hiepnguyen:~/yocto/poky$ git clone git://github.com:hoahiepnguyen/meta-olli.git
@@ -146,9 +148,10 @@ The `meta-olli/scipts` directory has some helper scripts to format and copy the 
 
 ### usb_flasher
 
-This binary will boot the FIT image to external RAM on mainboard through micro-usb cable. Then, mount eMMC flash into PC Linux.
+This binary will boot the FIT image to external RAM on mainboard through usb port and mount eMMC flash into PC Linux.
 
-Run `usbflash` by command:
+Run `usb_flasher` by command:
+
 ```
 dark@hiepnguyen:~/yocto/meta-olli/scripts/booting/$ sudo ./usb_flasher
 
@@ -158,9 +161,9 @@ dark@hiepnguyen:~/yocto/meta-olli/scripts/booting/$ sudo ./usb_flasher
 
 This script will partition an eMMC with the minimal 2 partitions required for the boards.
 
-Power on the mainboard and change to usb boot.
+Power on the mainboard and switch to usb boot by press `boot configuration` button.
 
-`lsblk` is convenient for fiding the eMMC card.
+`lsblk` is convenient for finding the eMMC card.
 
 For exmple:
 ```dark@hiepnguyen:~$ lsblk 
@@ -186,13 +189,13 @@ dark@hiepnguyen:~/yocto/meta-olli/scripts$ sudo ./mk2part.sh sdc
 
 ```
 
-You only have to format the eMMC flash once.
+You only have to format the eMMC flash memory once.
 
 ### copy_boot.sh
 
 This script copies the bootloader(MLO and u-boot) to the boot partition of the eMMC flash memory.
 
-This script also copies a `uEnv.tx` file to the boot partition if it find one in either.
+This script also copies a `uEnv.txt` file to the boot partition if it find one in either.
 
 ```
 <TMPDIR>/deploy/images/beaglebone/
@@ -211,14 +214,14 @@ You only have to create this directory once.
 
 This script need to know the TMPDIR to find the binaries. It looks for an environment variable called OETMP.
 
-So, you can export this environment variable before running `copy_boot.sh`
+So, you must export this environment variable before running `copy_boot.sh`
 
 ```
 dark@hiepnguyen:~/yocto/meta-olli/scripts$ export OETMP=/home/dark/yocto/build/tmp
 
 ```
 
-Then run the `copy_boot.sh` script passing the location of eMMC flash.
+Then run the `copy_boot.sh` script passing the location of eMMC flash memory.
 
 ```
 dark@hiepnguyen:~/yocto/meta-olli/scripts$ ./copy_boot.sh sdc
@@ -234,13 +237,13 @@ This script copies the zImage kernel, the device tree binaries and the rest of t
 Here's an example of how to run `copy_rootfs.sh`:
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts$ sudo ./copy_rootfs.sh sdc
+dark@hiepnguyen:~/yocto/meta-olli/scripts$ ./copy_rootfs.sh sdc
 
 ```
 
 ### bring_up.sh
 
-This script includes all the functions listed above. You must power on the mainboard, press the "boot configuration" button to boot from usb. It will call usb_flasher to boot FIT image on external RAM. After, mounted the eMMC flash memory into PC linux. Then, copies bootloader, zImage, device tree and rootfile system to the partition of the eMMC.
+This script includes all the functions listed above. You must power on the mainboard, press the "boot configuration" button to boot from usb. It will call usb_flasher to boot FIT image on external RAM. After mounting the eMMC flash memory into PC linux. Then, copies bootloader, zImage, device tree and rootfile system to the partition of the eMMC.
 
 This cripts need to OETMP path to yocto direction. Type command below:
 
