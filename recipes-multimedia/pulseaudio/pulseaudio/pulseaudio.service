@@ -1,6 +1,6 @@
 [Unit]
 Description=Sound Service
-After=alsa-restore.service
+After=bb-wl18xx-bluetooth.service
 
 [Service]
 # Note that notify will only work if --daemonize=no

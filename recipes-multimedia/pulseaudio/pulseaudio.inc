@@ -89,6 +89,8 @@ do_compile_append () {
 
 do_install_append() {
   install -d ${D}${sysconfdir}/default/volatiles
+  install -d ${D}${systemd_unitdir}/system/
+  install -m 0644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system/
   install -m 0644 ${WORKDIR}/volatiles.04_pulse  ${D}${sysconfdir}/default/volatiles/volatiles.04_pulse
   install -m 0644 ${WORKDIR}/default.pa  ${D}${sysconfdir}/pulse/default.pa
 }
