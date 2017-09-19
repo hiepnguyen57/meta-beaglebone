@@ -22,6 +22,7 @@ SRCREV = "c494eaf409cb8db9a5a513e9bdfac20b7a83daca"
 SRC_URI = " \
     git://git.denx.de/u-boot.git;branch=master;protocol=git \
     file://0001-fix-error-check-id-eeprom.patch \
+    file://0002-change-bootdelay-to-0-second.patch \
  "
 
 

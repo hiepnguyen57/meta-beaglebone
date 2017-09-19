@@ -71,6 +71,7 @@ EXTRA_TOOLS_INSTALL = " \
     htop \
     ncurses \
     ppp \
+    procps \
     rsync \
     screen \
     sudo \

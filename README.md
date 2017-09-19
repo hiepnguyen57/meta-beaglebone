@@ -83,6 +83,12 @@ dark@hiepnguyen:~/yocto/poky$ git clone -b morty git://git.openembedded.org/meta
 dark@hiepnguyen:~/yocto/poky$ git clone git://github.com:hoahiepnguyen/meta-olli.git
 ```
 
+### clone the `meta-nodejs` repository
+
+```
+dark@hiepnguyen:~/yocto$ git clone -b morty https://github.com/imyller/meta-nodejs.git
+```
+
 ## Building
 
 ### Initialize the build directory
@@ -105,7 +111,7 @@ Copy them to the `build/conf` directory:
 
 ```
 dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/local.conf build/conf/local.conf
-dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/bblayres.conf build/conf/bblayers.conf
+dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/bblayers.conf build/conf/bblayers.conf
 ```
 
 ### Run the build
