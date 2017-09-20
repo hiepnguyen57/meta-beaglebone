@@ -58,36 +58,47 @@ Choose `No`to dash when prompted
 
 ## Clone the repository
 
-### Create the `yocto` folder to build
+### Create the `yocto_release` folder to build
 
 ```
-dark&hiepnguyen:~$ mkdir yocto
-dark&hiepnguyen:~$ cd yocto
+dark&hiepnguyen:~$ mkdir yocto_release
+dark&hiepnguyen:~$ cd yocto_release
 ```
 
 * First the main Yocto project `poky` repository
 
 ```
-dark&hiepnguyen:/yocto~$ git clone -b morty git://git.yoctoproject.org/poky.git poky
+dark&hiepnguyen:/yocto_release~$ git clone -b morty git://git.yoctoproject.org/poky.git poky
 ```
 
 * Then the `meta-openembedded` repository
 ```
 dark@hiepnguyen:~$ cd poky
-dark@hiepnguyen:~/yocto/poky$ git clone -b morty git://git.openembedded.org/meta-openembedded
+dark@hiepnguyen:~/yocto_release/poky$ git clone -b morty git://git.openembedded.org/meta-openembedded
 ```
 
 ### Clone the `meta-olli` repository
 
 ```
-dark@hiepnguyen:~/yocto/poky$ git clone git://github.com:hoahiepnguyen/meta-olli.git
+dark@hiepnguyen:~/yocto_release/poky$ git clone git://github.com:hoahiepnguyen/meta-olli.git
 ```
 
-### clone the `meta-nodejs` repository
+### Clone the `meta-nodejs` repository
 
 ```
-dark@hiepnguyen:~/yocto$ git clone -b morty https://github.com/imyller/meta-nodejs.git
+dark@hiepnguyen:~/yocto_release$ git clone -b morty https://github.com/imyller/meta-nodejs.git
 ```
+
+### Download toolchain to build u-boot
+
+Create the `toolchains` folder
+```
+dark@hiepnguyen:~$ cd poky
+dark@hiepnguyen:~/yocto_release/poky$ mkdir toolchains
+dark@hiepnguyen:~/yocto_release/poky$ cd toolchains
+```
+
+Download `gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2` compiler link at `https://releases.linaro.org/archive/13.03/components/toolchain/binaries/`
 
 ## Building
 
@@ -98,7 +109,7 @@ Much of the following are only the conventions that I use. All of the paths to t
 Use the Yocto environment script `oe-init-build-env` like this passing in the path to the build directory
 
 ```
-dark&hiepnguyen:/yocto~$ source poky/oe-init-build-env build
+dark&hiepnguyen:/yocto_release~$ source poky/oe-init-build-env build
 ```
 
 The Yocto environment script will create the build directory if it does not already exist.
@@ -110,8 +121,8 @@ There are some sample configuration files in the `meta-olli/conf` directory.
 Copy them to the `build/conf` directory:
 
 ```
-dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/local.conf build/conf/local.conf
-dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/bblayers.conf build/conf/bblayers.conf
+dark@hiepnguyen:~/yocto_release/poky$ cp meta-olli/conf/local.conf build/conf/local.conf
+dark@hiepnguyen:~/yocto_release/poky$ cp meta-olli/conf/bblayers.conf build/conf/bblayers.conf
 ```
 
 ### Run the build
@@ -119,7 +130,7 @@ dark@hiepnguyen:~/yocto/poky$ cp meta-olli/conf/bblayers.conf build/conf/bblayer
 You need to source the Yocto environment into your shell before you can `use bitbake`. The `oe-init-build-env` will not overwrite your customized conf files.
 
 ```
-dark@hiepnguyen:~/yocto$ source poky/oe-init-build-env build/
+dark@hiepnguyen:~/yocto_release$ source poky/oe-init-build-env build/
 
 ### Shell environment set up for builds. ###
 
@@ -132,7 +143,7 @@ Common targets are:
     meta-ide-support
 
 You can also run generated qemu images with a command like 'runqemu qemux86'
-dark@hiepnguyen:~/yocto/build$ 
+dark@hiepnguyen:~/yocto_release/build$ 
 
 ```
 
@@ -143,7 +154,7 @@ This is one custom images available in the meta-olli layers. The recipes for the
 To build the `core-olli-image` run the following command
 
 ```
-#dark@hiepnguyen:~/yocto/build$ bitbake core-olli-image
+#dark@hiepnguyen:~/yocto_release/build$ bitbake core-olli-image
 ```
 
 ## Copying the binaries to eMMC on Mainboard
@@ -159,7 +170,7 @@ This binary will boot the FIT image to external RAM on mainboard through usb por
 Run `usb_flasher` by command:
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts/booting/$ sudo ./usb_flasher
+dark@hiepnguyen:~/yocto_release/meta-olli/scripts/booting/$ sudo ./usb_flasher
 
 ```
 
@@ -191,7 +202,7 @@ Mainboard mounted at `sdc` on this Linux PC.
 #### BE CAREFULY with this script. It will format any disk on your workstation
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts$ sudo ./mk2part.sh sdc
+dark@hiepnguyen:~/yocto_release/meta-olli/scripts$ sudo ./mk2part.sh sdc
 
 ```
 
@@ -223,14 +234,14 @@ This script need to know the TMPDIR to find the binaries. It looks for an enviro
 So, you must export this environment variable before running `copy_boot.sh`
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts$ export OETMP=/home/dark/yocto/build/tmp
+dark@hiepnguyen:~/yocto_release/meta-olli/scripts$ export OETMP=/home/dark/yocto_release/build/tmp
 
 ```
 
 Then run the `copy_boot.sh` script passing the location of eMMC flash memory.
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts$ ./copy_boot.sh sdc
+dark@hiepnguyen:~/yocto_release/meta-olli/scripts$ ./copy_boot.sh sdc
 
 ```
 
@@ -243,7 +254,7 @@ This script copies the zImage kernel, the device tree binaries and the rest of t
 Here's an example of how to run `copy_rootfs.sh`:
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/scripts$ ./copy_rootfs.sh sdc
+dark@hiepnguyen:~/yocto_release/meta-olli/scripts$ ./copy_rootfs.sh sdc
 
 ```
 
@@ -254,7 +265,7 @@ This script includes all the functions listed above. You must power on the mainb
 This cripts need to OETMP path to yocto direction. Type command below:
 
 ```
-dark@hiepnguyen:~/yocto/meta-olli/booting$ sudo ./bring_up.sh /home/dark/yocto/build/tmp 
+dark@hiepnguyen:~/yocto_release/meta-olli/booting$ sudo ./bring_up.sh /home/dark/yocto_release/build/tmp 
 
 ```
 

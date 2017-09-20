@@ -33,7 +33,7 @@ PACKAGE_ARCH = "arm"
 
 inherit uboot-config uboot-extlinux-config uboot-sign deploy
 
-EXTRA_OEMAKE = 'CROSS_COMPILE="/home/dark/bringup/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/bin/arm-linux-gnueabihf-" '
+EXTRA_OEMAKE = 'CROSS_COMPILE="${HOME}/yocto_release/toolchains/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/bin/arm-linux-gnueabihf-" '
 EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 
 PACKAGECONFIG ??= "openssl"
