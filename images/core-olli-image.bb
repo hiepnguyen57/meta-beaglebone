@@ -94,6 +94,7 @@ MQTT = " \
  "
 OLLI_APPS = " \
     music-player \
+    nodejs \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
