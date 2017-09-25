@@ -5,7 +5,7 @@ Documentation=man:bluetoothd(8)
 [Service]
 Type=dbus
 BusName=org.bluez
-ExecStart=/usr/lib/bluetooth/bluetoothd
+ExecStart=/usr/libexec/bluetooth/bluetoothd
 NotifyAccess=main
 #WatchdogSec=10
 #Restart=on-failure
