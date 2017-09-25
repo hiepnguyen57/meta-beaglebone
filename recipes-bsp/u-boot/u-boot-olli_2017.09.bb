@@ -22,6 +22,7 @@ SRCREV = "c494eaf409cb8db9a5a513e9bdfac20b7a83daca"
 SRC_URI = " \
     git://git.denx.de/u-boot.git;branch=master;protocol=git \
     file://0001-fix-error-check-id-eeprom.patch \
+    file://0002-change-bootdelay-to-0-second.patch \
  "
 
 
@@ -32,7 +33,7 @@ PACKAGE_ARCH = "arm"
 
 inherit uboot-config uboot-extlinux-config uboot-sign deploy
 
-EXTRA_OEMAKE = 'CROSS_COMPILE="/home/dark/bringup/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/bin/arm-linux-gnueabihf-" '
+EXTRA_OEMAKE = 'CROSS_COMPILE="${HOME}/yocto_release/toolchains/gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux/bin/arm-linux-gnueabihf-" '
 EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 
 PACKAGECONFIG ??= "openssl"

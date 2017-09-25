@@ -47,6 +47,11 @@ DEV_SDK_INSTALL = " \
     python-dev  \
     python-modules \
     python3-modules \
+    python-dbus \
+    python-pygobject \
+    python-enum34 \
+    python-termcolor \
+    python-pulsectl \
  "
 
 DEV_EXTRAS = " \
@@ -71,6 +76,7 @@ EXTRA_TOOLS_INSTALL = " \
     htop \
     ncurses \
     ppp \
+    procps \
     rsync \
     screen \
     sudo \
@@ -86,7 +92,10 @@ MQTT = " \
     lzop    \
     libusb1 \
  "
-
+OLLI_APPS = " \
+    music-player \
+    nodejs \
+ "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
     ${KERNEL_EXTRA_INSTALL} \
@@ -95,4 +104,5 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
+    ${OLLI_APPS} \
  "
