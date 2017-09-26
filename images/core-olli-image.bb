@@ -58,9 +58,8 @@ DEV_EXTRAS = " \
     mpg123 \
     sox \
     alsa-utils \
-    alsa-utils-aplay \
-    alsa-utils-alsamixer \
     hostapd \
+    atlas-base \
  "
 
 EXTRA_TOOLS_INSTALL = " \
@@ -95,6 +94,7 @@ MQTT = " \
 OLLI_APPS = " \
     music-player \
     nodejs \
+    wakeword \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
