@@ -1,0 +1,8 @@
+[Unit]
+Description= wakeword engine
+After= pulseaudio.service
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/wakeup_demo
+[Install]
+WantedBy=multi-user.target
