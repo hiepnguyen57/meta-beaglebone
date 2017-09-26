@@ -1,6 +1,6 @@
 SUMMARY = "this is a summary"
 DESCRIPTION = "this is a description "
-LICENSE = "Olli"
+LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=00a815132bf7705aedd88242f1ce17b7"
 HOMEPAGE = "https://github.com/olli-ai/WakeWord"
 SRCREV = "4681c7a554009b3e7ff0c7d45e61a796eed63cc9"

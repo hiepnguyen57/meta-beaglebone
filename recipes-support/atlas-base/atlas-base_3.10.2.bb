@@ -29,3 +29,4 @@ FILES_${PN}-dev += "${libdir}/*.so* ${libdir}/atlas-base/*.so ${libdir}/atlas-ba
 
 #FILES_${PN}-dev += " ${libdir}/atlas-base/*.o ${libdir}/atlas-base/*.so  ${libdir}/atlas-base/atlas/*.o ${libdir}/atlas-base/atlas/*.so ${libdir}/pkgconfig/* "
 FILES_${PN}-staticdev += " ${libdir}/*.a ${libdir}/atlas-base/atlas/*.a "
+ALLOW_EMPTY_${PN} = '1'
