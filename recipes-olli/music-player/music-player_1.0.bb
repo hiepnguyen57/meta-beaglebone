@@ -3,7 +3,7 @@ SUMMARY = "Music Player Application"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=7babb7265ab30500931b5bc5b011b67a"
 HOMEPAGE = "https://github.com/olli-ai/mp/"
-SRCREV = "a54eedf3f992750cdb960f5f0e46493052a6eb84"
+SRCREV = "92cf9a1b9513e5fd7664d3b40eb1e4a8f25ba0c0"
 SRC_URI = "git://git@github.com/olli-ai/mp.git;protocol=ssh"
 DEPENDS = " glib-2.0 dbus python"
 
@@ -26,7 +26,7 @@ do_install_append() {
     install -m 0755 ${WORKDIR}/git/contextManager.py ${D}/home/root/apps/mp/contextManager.py
     install -m 0755 ${WORKDIR}/git/events.py ${D}/home/root/apps/mp/events.py
     install -m 0755 ${WORKDIR}/git/log.py ${D}/home/root/apps/mp/log.py
-    install -m 0755 ${WORKDIR}/git/main.py ${D}/home/root/apps/mp/main.py
+    install -m 0755 ${WORKDIR}/git/mp_main.py ${D}/home/root/apps/mp/mp_main.py
     install -m 0755 ${WORKDIR}/git/mpg123.py ${D}/home/root/apps/mp/mpg123.py
     install -m 0755 ${WORKDIR}/git/pactl.py ${D}/home/root/apps/mp/pactl.py
     install -m 0755 ${WORKDIR}/git/test_fade_volume.py ${D}/home/root/apps/mp/test_fade_volume.py

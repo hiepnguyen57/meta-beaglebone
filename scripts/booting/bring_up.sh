@@ -164,7 +164,7 @@ then
         echo -e "\n=== Done! ===\n"
 
         echo -e "========================================================="
-        echo -e "++++++++ Copying bootloader and boot environment ++++++++"
+        echo -e "+++++++++ Copying bootloader and uEnv.txt file ++++++++++"
         echo -e "========================================================="
 
         if [ -z "$OETMP" ]; then
@@ -263,5 +263,6 @@ then
         echo "Flashing done !!!"
         echo "Please remove power from your board and plug it again."\
                         "You will boot in the new OS!"
+        echo "Have Fun !!! Enjoy that !!!"
     fi
 fi
