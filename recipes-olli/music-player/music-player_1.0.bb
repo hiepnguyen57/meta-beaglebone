@@ -43,6 +43,10 @@ do_install_append() {
 
 SYSTEMD_SERVICE_${PN} = "music-player.service "
 
-FILES_${PN} += "${sysconfdir} ${systemd_unitdir} /home/root/music-player"
+FILES_${PN} += " \
+                ${systemd_unitdir}/system/music-player.service \
+                ${sysconfdir}/dbus-1/system.d/org.olli.music.conf \
+                /home/root/music-player/* \
+                "
 FILES_${PN}-conf = "${sysconfdir}"
 RDEPENDS_${PN} += "python"
