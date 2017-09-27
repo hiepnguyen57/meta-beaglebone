@@ -1,5 +1,5 @@
-SUMMARY = "this is a summary"
-DESCRIPTION = "this is a description "
+SUMMARY = "WakeWord"
+DESCRIPTION = "Wakeword detector using snowboy "
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=00a815132bf7705aedd88242f1ce17b7"
 HOMEPAGE = "https://github.com/olli-ai/WakeWord"
@@ -30,14 +30,14 @@ do_compile () {
 
 do_install_append () {
 	install -d ${D}${bindir}
-	install -d ${D}${bindir}/resources
+	install -d ${D}${sysconfdir}/wakeword/resources
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}/dbus-1/system.d
 
 	install -m 0644 ${WORKDIR}/wakeword.conf ${D}${sysconfdir}/dbus-1/system.d
 	install -m 0644 ${WORKDIR}/wakeword.service ${D}${systemd_unitdir}/system/wakeword.service 
-	install -m 0775 ${WORKDIR}/alexa.umdl ${D}${bindir}/resources
-	install -m 0775 ${WORKDIR}/common.res ${D}${bindir}/resources 
+	install -m 0775 ${WORKDIR}/alexa.umdl ${D}${sysconfdir}/wakeword/resources
+	install -m 0775 ${WORKDIR}/common.res ${D}${sysconfdir}/wakeword/resources 
 	install -m 0755 ${WORKDIR}/git/src/wakeup_demo ${D}${bindir}/
 }
 
