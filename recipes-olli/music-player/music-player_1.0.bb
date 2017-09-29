@@ -19,8 +19,9 @@ do_install_append() {
     install -d ${D}/home/root/music-player
     install -d ${D}${systemd_unitdir}/system
     install -d ${D}${sysconfdir}/dbus-1/system.d
+
     install -m 0644 ${WORKDIR}/org.olli.music.conf  ${D}${sysconfdir}/dbus-1/system.d/org.olli.music.conf
-    install -m 0755 ${WORKDIR}/music-player.service ${D}${systemd_unitdir}/system/music-player.service
+    install -m 0644 ${WORKDIR}/music-player.service ${D}${systemd_unitdir}/system/music-player.service
     install -m 0755 ${WORKDIR}/git/agent.py ${D}/home/root/music-player/agent.py
     install -m 0755 ${WORKDIR}/git/bluePlayer.py ${D}/home/root/music-player/bluePlayer.py
     install -m 0755 ${WORKDIR}/git/bluetooth.py ${D}/home/root/music-player/bluetooth.py

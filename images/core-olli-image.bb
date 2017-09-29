@@ -95,6 +95,7 @@ OLLI_APPS = " \
     music-player \
     nodejs \
     wakeword \
+    cloud-services-manager \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
