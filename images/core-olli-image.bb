@@ -94,8 +94,8 @@ MQTT = " \
 OLLI_APPS = " \
     music-player \
     nodejs \
+    nodejs-npm \
     wakeword \
-    cloud-services-manager \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
