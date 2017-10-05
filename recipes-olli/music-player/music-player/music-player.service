@@ -1,11 +1,10 @@
 [Unit]
-Description=Music Player Service 
-#After=bb-wl18xx-bluetooth.service
+Description=Music Player 
+After=bb-wl18xx-bluetooth.service
 
 [Service]
-ExecStart=/usr/bin/python /home/root/apps/mp/mp_main.py
-Type=forking
-Restart=on-failure
+Type=simple
+ExecStart=/usr/bin/python /home/root/apps/mp/mplayer_main.py
 
 [Install]
 WantedBy=multi-user.target

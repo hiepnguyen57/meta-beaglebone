@@ -3,7 +3,7 @@ SUMMARY = "Music Player Application"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=7babb7265ab30500931b5bc5b011b67a"
 HOMEPAGE = "https://github.com/olli-ai/mp/"
-SRCREV = "78d6fc8e7c8e3bd4ed9e50c67eafb1f92c329f74"
+SRCREV = "1164a7698bb478b87ee83794e201b710123ac004"
 SRC_URI = " \
             git://git@github.com/olli-ai/mp.git;protocol=ssh \
             file://music-player.service \

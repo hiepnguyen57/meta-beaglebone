@@ -1,5 +1,5 @@
 [Unit]
-Description=Sound Service
+Description=Pulse Audio
 After=bb-wl18xx-bluetooth.service
 
 [Service]
