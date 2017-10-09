@@ -31,8 +31,9 @@ do_install_append() {
     install -m 0755 ${WORKDIR}/git/contextManager.py ${D}/home/root/music-player/contextManager.py
     install -m 0755 ${WORKDIR}/git/events.py ${D}/home/root/music-player/events.py
     install -m 0755 ${WORKDIR}/git/log.py ${D}/home/root/music-player/log.py
-    install -m 0755 ${WORKDIR}/git/mp_main.py ${D}/home/root/music-player/mp_main.py
+    install -m 0755 ${WORKDIR}/git/mplayer_main.py ${D}/home/root/music-player/mplayer_main.py
     install -m 0755 ${WORKDIR}/git/mpg123.py ${D}/home/root/music-player/mpg123.py
+    install -m 0755 ${WORKDIR}/git/mpg321.py ${D}/home/root/music-player/mpg321.py
     install -m 0755 ${WORKDIR}/git/pactl.py ${D}/home/root/music-player/pactl.py
     install -m 0755 ${WORKDIR}/git/test_fade_volume.py ${D}/home/root/music-player/test_fade_volume.py
     install -m 0755 ${WORKDIR}/git/test_method.py ${D}/home/root/music-player/test_method.py

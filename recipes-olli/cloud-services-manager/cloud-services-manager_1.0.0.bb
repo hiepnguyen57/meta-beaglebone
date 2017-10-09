@@ -3,18 +3,17 @@ DESCRIPTION = "Interface with user by using voice control"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=32979adb7182a1d4a6b800ee73a173bf"
 HOMEPAGE = "https://github.com/olli-ai/cloud-services-manager"
-SRCREV = "02b3d1e8a11ce3d7d7c47cbc680ba19177abd96f"
+SRCREV = "94be9e80a76de3d1e7bc954fb3910af14242e7d9"
 SRC_URI = " \
 			git://git@github.com/olli-ai/cloud-services-manager.git;protocol=ssh;branch=master \
 			file://cloud_manager.service \
-			file://node_modules \
 		  "
-DEPENDS = "dbus nodejs"
-RDEPENDS_${PN} += " bash  "
-
+DEPENDS = "dbus nodejs alsa-lib "
+RDEPENDS_${PN} += " bash libasound python "
+RDEPENDS_${PN}-staticdev += " make perl python "
 S = "${WORKDIR}/git"
 
-inherit systemd
+inherit systemd npm-base
 
 do_install_append () {
 	install -d ${D}/home/root/cloud-services-manager
@@ -35,14 +34,16 @@ do_install_append () {
 	install -m 0775 ${WORKDIR}/git/testmplayer.js ${D}/home/root/cloud-services-manager/testmplayer.js
 	install -m 0775 ${WORKDIR}/git/testrecord.js ${D}/home/root/cloud-services-manager/testrecord.js
 
-	cp -R ${WORKDIR}/node_modules ${D}/home/root/cloud-services-manager/
+	oe_runnpm --prefix ${WORKDIR}/git/ install
 
+	cp -R ${WORKDIR}/git/node_modules ${D}/home/root/cloud-services-manager
+	rm -R ${D}/home/root/cloud-services-manager/node_modules/put/test
 }
 
 SYSTEMD_SERVICE_${PN} = "cloud_manager.service "
 
 FILES_${PN} += " \
 				/home/root/cloud-services-manager/* \
-				${systemd_unitdir}/system/cloud_manager.service \
-				/home/root/cloud-services-manager/node_modules/ \ 
+				${systemd_unitdir}/system/cloud_manager.service \ 
 				"
+FILES_${PN}-staticdev += " /home/root/cloud-services-manager/node_modules/* " 

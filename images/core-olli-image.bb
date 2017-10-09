@@ -12,6 +12,7 @@ CORE_OS = " \
     openssh \
     iptables \
     dhcp-server \
+    rpm \
  "
 
 KERNEL_EXTRA_INSTALL = " \
@@ -55,7 +56,7 @@ DEV_SDK_INSTALL = " \
  "
 
 DEV_EXTRAS = " \
-    mpg123 \
+    mpg321 \
     sox \
     alsa-utils \
     hostapd \
@@ -92,10 +93,14 @@ MQTT = " \
     libusb1 \
  "
 OLLI_APPS = " \
+    cloud-services-manager \
     music-player \
     nodejs \
     nodejs-npm \
     wakeword \
+    libao \
+    libao-plugin-libpulse \
+    libao-plugin-libalsa \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \

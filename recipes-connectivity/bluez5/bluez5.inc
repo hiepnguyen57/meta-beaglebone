@@ -25,6 +25,7 @@ SRC_URI = "\
     file://0001-tests-add-a-target-for-building-tests-without-runnin.patch \
     file://50-bluetooth-hci-auto-poweron.rules \
     file://bluetooth.service \
+    file://bluetooth.conf \
 "
 S = "${WORKDIR}/bluez-${PV}"
 
@@ -52,6 +53,9 @@ do_install_append() {
 	install -d ${D}${INIT_D_DIR}
   install -d ${D}${sysconfdir}/udev/rules.d/
   install -d ${D}${systemd_unitdir}/system/
+  install -d ${D}${sysconfdir}/dbus-1/system.d
+  
+  install -m 0644 ${WORKDIR}/bluetooth.conf ${D}/${sysconfdir}/dbus-1/system.d/
   install -m 0644 ${WORKDIR}/bluetooth.service ${D}${systemd_unitdir}/system/
   install -m 0644 ${WORKDIR}/50-bluetooth-hci-auto-poweron.rules ${D}${sysconfdir}/udev/rules.d/
 	install -m 0755 ${WORKDIR}/init ${D}${INIT_D_DIR}/bluetooth
