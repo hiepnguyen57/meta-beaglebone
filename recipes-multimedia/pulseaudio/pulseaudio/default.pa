@@ -137,4 +137,5 @@ load-module module-filter-apply
 
 ### Make some devices default
 set-default-sink alsa_output.platform-sound.analog-stereo
-#set-default-source input
+set-default-source alsa_input.usb-046d_0825_D57A0B20-02.analog-mono
+

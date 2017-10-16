@@ -56,6 +56,7 @@ TI_AM335x_BeagleBone_Blue)
 	;;
 esac
 
+
 #FIXME: Switch to led class, wl18xx_bt_en
 #       leds {
 #               pinctrl-names = "default";
@@ -68,6 +69,7 @@ esac
 #                       default-state = "off";
 #               };
 #       };
+
 
 hciattach_bin=$(which hciattach)
 

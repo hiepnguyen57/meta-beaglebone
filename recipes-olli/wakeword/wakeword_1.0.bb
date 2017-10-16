@@ -48,3 +48,4 @@ FILES_${PN} += " \
 				${sysconfdir}/dbus-1/system.d/wakeword.conf \ 
 				"
 FILES_${PN}-conf = " ${sysconfdir} "
+SYSTEMD_SERVICE_${PN} = " wakeword.service"

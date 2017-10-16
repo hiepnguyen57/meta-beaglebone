@@ -18,7 +18,7 @@ inherit systemd
 
 do_install_append () {
     install -d ${D}${systemd_unitdir}/system
-    install -m 0755 bb-wl18xx-bluetooth.service ${D}${systemd_unitdir}/system
+    install -m 0644 bb-wl18xx-bluetooth.service ${D}${systemd_unitdir}/system
 
     install -d ${D}/lib/firmware/ti-connectivity
     install -m 0644 TIInit_11.8.32.bts ${D}/lib/firmware/ti-connectivity

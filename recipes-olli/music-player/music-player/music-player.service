@@ -1,10 +1,10 @@
 [Unit]
 Description=Music Player 
-After=bb-wl18xx-bluetooth.service
+After=bluetooth.target bb-wl18xx-bluetooth.service pulseaudio.service sound.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python /home/root/apps/mp/mplayer_main.py
+ExecStart=/usr/bin/python /home/root/music-player/mplayer_main.py
 
 [Install]
 WantedBy=multi-user.target

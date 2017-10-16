@@ -33,6 +33,8 @@ WIFI_SUPPORT = " \
  "
 
 DEV_SDK_INSTALL = " \
+    pkgconfig \
+    opkg \
     autoconf \
     automake \
     avahi-daemon \
@@ -42,6 +44,7 @@ DEV_SDK_INSTALL = " \
     file \
     flex \
     gcc \
+    gcc-symlinks \
     gdb \
     git \
     hdparm \
@@ -56,6 +59,7 @@ DEV_SDK_INSTALL = " \
  "
 
 DEV_EXTRAS = " \
+    ffmpeg \
     mpg321 \
     sox \
     alsa-utils \

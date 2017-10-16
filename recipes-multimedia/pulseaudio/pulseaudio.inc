@@ -90,9 +90,12 @@ do_compile_append () {
 do_install_append() {
   install -d ${D}${sysconfdir}/default/volatiles
   install -d ${D}${systemd_unitdir}/system/
+  install -d ${D}${sysconfdir}/dbus-1/system.d
+
   install -m 0644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system/
   install -m 0644 ${WORKDIR}/volatiles.04_pulse  ${D}${sysconfdir}/default/volatiles/volatiles.04_pulse
   install -m 0644 ${WORKDIR}/default.pa  ${D}${sysconfdir}/pulse/default.pa
+  install -m 0644 ${WORKDIR}/pulseaudio-system.conf ${D}/${sysconfdir}/dbus-1/system.d/
 }
 
 USERADD_PACKAGES = "pulseaudio-server"
@@ -126,7 +129,7 @@ FILES_libpulse-mainloop-glib = "${libdir}/libpulse-mainloop-glib.so.*"
 FILES_${PN}-dev += "${libdir}/pulse-${PV}/modules/*.la ${datadir}/vala ${libdir}/cmake"   
 FILES_${PN}-conf = "${sysconfdir}"
 FILES_${PN}-bin += "${sysconfdir}/default/volatiles/volatiles.04_pulse"
-FILES_${PN}-server = "${bindir}/pulseaudio ${bindir}/start-* ${sysconfdir} ${bindir}/pactl */udev/rules.d/*.rules */*/udev/rules.d/*.rules ${systemd_unitdir}/system/*"
+FILES_${PN}-server = "${bindir}/pulseaudio ${bindir}/start-* ${sysconfdir} ${bindir}/pactl ${bindir}/pacmd */udev/rules.d/*.rules */*/udev/rules.d/*.rules ${systemd_unitdir}/system/*"
 
 SYSTEMD_PACKAGES = "${PN}-server"
 SYSTEMD_SERVICE_${PN}-server = "pulseaudio.service"
@@ -186,6 +189,7 @@ RDEPENDS_pulseaudio-server = " \
     pulseaudio-module-bluez5-discover \
     pulseaudio-module-systemd-login \
     pulseaudio-module-loopback \
+    pulseaudio-module-native-protocol-tcp \
     pulseaudio-module-switch-on-port-available"
 
 # If the server is installed, it's usually desirable to make ALSA applications
