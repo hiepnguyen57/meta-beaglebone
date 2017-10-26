@@ -1,0 +1,10 @@
+[Unit]
+Description= bluez alsa daemon
+After= sound.target bb-wl18xx-bluetooth.service
+[Service]
+Type=simple
+ExecStart=/usr/bin/bluealsa
+Restart=on-failure
+RestartSec=1
+[Install]
+WantedBy=multi-user.target

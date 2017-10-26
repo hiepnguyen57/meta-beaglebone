@@ -1,0 +1,13 @@
+SUMMARY = "oRTP is a library implemeting Real-time Transport Protocol (RFC 3550)"
+HOMEPAGE = "http://www.linphone.org/technical-corner/ortp/overview"
+SECTION = "libs/multimedia"
+LICENSE = "LGPLv2"
+LIC_FILES_CHKSUM = "file://README;md5=d2e959b814f54aff723178ba4bf23b3b"
+SRC_URI = "http://download.savannah.nongnu.org/releases/linphone/ortp/sources/ortp-${PV}.tar.gz"
+
+SRC_URI[md5sum] = "301d1e9e32d1ba5399bc82ceb11debf7"
+SRC_URI[sha256sum] = "eb61a833ab3ad80978d7007411240f46e9b2d1034373b9d9dfaac88c1b6ec0af"
+FILES_${PN} += "${includedir}/* "
+FILES_libortp-dev = "${includedir}/* "
+PACKAGES =+ "libortp-dev "
+ALLOW_EMPTY_${PN} = "1"

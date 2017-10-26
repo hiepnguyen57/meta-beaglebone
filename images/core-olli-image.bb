@@ -13,6 +13,8 @@ CORE_OS = " \
     iptables \
     dhcp-server \
     rpm \
+    bluez-alsa \
+    wifi-manager \
  "
 
 KERNEL_EXTRA_INSTALL = " \
@@ -24,8 +26,6 @@ WIFI_SUPPORT = " \
     bluez5 \
     crda \
     iw \
-    pulseaudio \
-    pulseaudio-server \
     wlconf \
     wl18xx-fw \
     wireless-tools \
@@ -55,12 +55,10 @@ DEV_SDK_INSTALL = " \
     python-pygobject \
     python-enum34 \
     python-termcolor \
-    python-pulsectl \
  "
 
 DEV_EXTRAS = " \
-    ffmpeg \
-    mpg321 \
+    mpg123 \
     sox \
     alsa-utils \
     hostapd \
@@ -71,8 +69,8 @@ EXTRA_TOOLS_INSTALL = " \
     bc \
     bison \
     ca-certificates \
-    connman \
-    connman-client \
+    networkmanager \
+    networkmanager-nmtui \
     curl \
     dosfstools \
     i2c-tools \
@@ -102,9 +100,6 @@ OLLI_APPS = " \
     nodejs \
     nodejs-npm \
     wakeword \
-    libao \
-    libao-plugin-libpulse \
-    libao-plugin-libalsa \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \

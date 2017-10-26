@@ -5,6 +5,8 @@ After=bluetooth.target bb-wl18xx-bluetooth.service pulseaudio.service sound.targ
 [Service]
 Type=simple
 ExecStart=/usr/bin/python /home/root/music-player/mplayer_main.py
+Restart=on-failure
+RestartSec=1
 
 [Install]
 WantedBy=multi-user.target

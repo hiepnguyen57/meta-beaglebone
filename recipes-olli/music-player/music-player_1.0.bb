@@ -3,7 +3,7 @@ SUMMARY = "Music Player Application"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=7babb7265ab30500931b5bc5b011b67a"
 HOMEPAGE = "https://github.com/olli-ai/mp/"
-SRCREV = "1164a7698bb478b87ee83794e201b710123ac004"
+SRCREV = "26b993bff4a52b5b7bb3292d5360993577fa892b"
 SRC_URI = " \
             git://git@github.com/olli-ai/mp.git;protocol=ssh \
             file://music-player.service \
@@ -41,6 +41,7 @@ do_install_append() {
     install -m 0755 ${WORKDIR}/git/test_signal.py ${D}/home/root/music-player/test_signal.py
     install -m 0755 ${WORKDIR}/git/test_wakeword.py ${D}/home/root/music-player/test_wakeword.py
     install -m 0755 ${WORKDIR}/git/webPlayer.py ${D}/home/root/music-player/webPlayer.py
+    install -m 0755 ${WORKDIR}/git/amixer.py ${D}/home/root/music-player/amixer.py
 }
 
 SYSTEMD_SERVICE_${PN} = "music-player.service "

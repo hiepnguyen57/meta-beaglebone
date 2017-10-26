@@ -3,7 +3,7 @@ DESCRIPTION = "this is a description "
 LICENSE = "Olli"
 LIC_FILES_CHKSUM = "file://README.md;md5=db578ad8efc88729badff79cf47aff39"
 HOMEPAGE = "https://github.com/olli-ai/wifi-manager"
-SRCREV = "8a22f2231404a6a6fd317d53bcde5eef0dff94aa"
+SRCREV = "e52725032ba0e8bd4f649e0d00f47dcc00eaa1ed"
 SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh \
 			file://beeeep.mp3 \
 "
@@ -15,28 +15,23 @@ S= "${WORKDIR}/git"
 inherit npm-base systemd
 
 do_install_append() {
-	install -d ${D}${sysconfdir}/wifi_manager
-	install -d ${D}${sysconfdir}/sound
+	install -d ${D}/home/root/wifi-manager
 	install -d ${D}${systemd_unitdir}/system
-	install -d ${D}${sysconfdir}/NetworkManager/
-	install -d ${D}${sysconfdir}/NetworkManager/system-connections
 
 	oe_runnpm --prefix ${WORKDIR}/git/ install
 
-	install -m 0775 ${WORKDIR}/git/scripts/open-wifi.sh ${D}${sysconfdir}/wifi_manager/open-wifi.sh
 	install -m 0644 ${WORKDIR}/git/olli_wifi.service ${D}${systemd_unitdir}/system/olli_wifi.service
-	install -m 0775 ${WORKDIR}/git/index.html ${D}${sysconfdir}/wifi_manager/index.html
-	install -m 0775 ${WORKDIR}/git/wifi_list.json ${D}${sysconfdir}/wifi_manager/wifi_list.json
-	install -m 0775 ${WORKDIR}/git/index.js ${D}${sysconfdir}/wifi_manager/index.js
-	install -m 0775 ${WORKDIR}/git/package.json ${D}${sysconfdir}/wifi_manager/package.json
-	install -m 0775 ${WORKDIR}/beeeep.mp3 ${D}${sysconfdir}/sound/beeeep.mp3
+	install -m 0644 ${WORKDIR}/git/wifi_ap.service ${D}${systemd_unitdir}/system/wifi_ap.service
+	install -m 0775 ${WORKDIR}/git/index.html ${D}/home/root/wifi-manager/index.html
+	install -m 0775 ${WORKDIR}/git/wifi_list.json ${D}/home/root/wifi-manager/wifi_list.json
+	install -m 0775 ${WORKDIR}/git/index.js ${D}/home/root/wifi-manager/index.js
+	install -m 0775 ${WORKDIR}/git/package.json ${D}/home/root/wifi-manager/package.json
 
-	cp -R ${WORKDIR}/git/node_modules ${D}${sysconfdir}/wifi_manager/
-	rm -R ${D}${sysconfdir}/wifi_manager/node_modules/put/test
+	cp -R ${WORKDIR}/git/node_modules ${D}/home/root/wifi-manager/
+	rm -R ${D}/home/root/wifi-manager/node_modules/put/test
 }
 
-SYSTEMD_SERVICE_${PN} = "olli_wifi.service "
+SYSTEMD_SERVICE_${PN} = "olli_wifi.service wifi_ap.service "
 
-FILES_${PN}-conf = "${sysconfdir}"
-FILES_${PN} += " ${systemd_unitdir} ${sysconfdir}/sound/* ${sysconfdir}/wifi_manager/* ${sysconfdir}/wifi_manager/* ${sysconfdir}/olli_wifi/open-wifi.sh ${sysconfdir}/wifi_manager/wifi_list.json "
-FILES_${PN} += "${sysconfdir}/wifi_manager/node_modules/"
+FILES_${PN} += " ${systemd_unitdir}  /home/root/wifi-manager/* /home/root/wifi-manager/* /home/root/olli_wifi/open-wifi.sh /home/root/wifi-manager/wifi_list.json "
+FILES_${PN} += "/home/root/wifi-manager/node_modules/"
