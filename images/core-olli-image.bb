@@ -15,6 +15,7 @@ CORE_OS = " \
     rpm \
     bluez-alsa \
     wifi-manager \
+    led-service \
  "
 
 KERNEL_EXTRA_INSTALL = " \
@@ -55,6 +56,19 @@ DEV_SDK_INSTALL = " \
     python-pygobject \
     python-enum34 \
     python-termcolor \
+    binutils \
+    binutils-symlinks \
+    coreutils \
+    cpp \
+    cpp-symlinks \
+    diffutils \
+    g++ \
+    g++-symlinks \
+    gettext \
+    ldd \
+    libstdc++ \
+    libstdc++-dev \
+    make \
  "
 
 DEV_EXTRAS = " \

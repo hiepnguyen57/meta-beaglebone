@@ -3,10 +3,11 @@ DESCRIPTION = "Interface with user by using voice control"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=32979adb7182a1d4a6b800ee73a173bf"
 HOMEPAGE = "https://github.com/olli-ai/cloud-services-manager"
-SRCREV = "c0a1f535477c58218222e7bc36fd1b1ffbd4320e"
+SRCREV = "cd7e48237512721f990455c3ec1c5ae33c802272"
 SRC_URI = " \
 			git://git@github.com/olli-ai/cloud-services-manager.git;protocol=ssh;branch=master \
 			file://cloud_manager.service \
+			file://lost_connection.wav \
 		  "
 DEPENDS = "dbus nodejs alsa-lib "
 RDEPENDS_${PN} += " bash libasound python "
@@ -18,7 +19,9 @@ inherit systemd npm-base
 do_install_append () {
 	install -d ${D}/home/root/cloud-services-manager
 	install -d ${D}${systemd_unitdir}/system
+	install -d ${D}${datadir}/sounds/olli
 
+	install -m 0644 ${WORKDIR}/lost_connection.wav ${D}${datadir}/sounds/olli
 	install -m 0775 ${WORKDIR}/git/backend_NLP.proto ${D}/home/root/cloud-services-manager/backend_NLP.proto
 	install -m 0775 ${WORKDIR}/git/app.js ${D}/home/root/cloud-services-manager/app.js
 	install -m 0775 ${WORKDIR}/git/client.js ${D}/home/root/cloud-services-manager/client.js
