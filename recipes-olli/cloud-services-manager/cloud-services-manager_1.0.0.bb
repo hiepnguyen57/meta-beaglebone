@@ -29,6 +29,7 @@ do_install_append () {
 	install -m 0644 ${WORKDIR}/cloud_manager.service ${D}${systemd_unitdir}/system/cloud_manager.service
 	install -m 0775 ${WORKDIR}/git/event.js ${D}/home/root/cloud-services-manager/event.js
 	install -m 0775 ${WORKDIR}/git/id.js ${D}/home/root/cloud-services-manager/id.js
+	install -m 0775 ${WORKDIR}/git/led.js ${D}/home/root/cloud-services-manager/led.js
 	install -m 0775 ${WORKDIR}/git/olli-iviet-558c388af1fb.json ${D}/home/root/cloud-services-manager/olli-iviet-558c388af1fb.json
 	install -m 0775 ${WORKDIR}/git/package-lock.json ${D}/home/root/cloud-services-manager/package-lock.json
 	install -m 0775 ${WORKDIR}/git/package.json ${D}/home/root/cloud-services-manager/package.json

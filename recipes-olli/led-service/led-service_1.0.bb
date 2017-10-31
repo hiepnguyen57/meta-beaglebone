@@ -3,7 +3,7 @@ DESCRIPTION = "Led service"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=d1a392063916cfb2ce577d226e43b735"
 HOMEPAGE = "https://github.com/olli-ai/led-service.git"
-SRCREV = "a1d4245c6d6233368d91b09a3135e81ab65458db"
+SRCREV = "5e4b373a56b79cabc090067a732c5a633d700187"
 SRC_URI = " \
 			git://git@github.com/olli-ai/led-service.git;protocol=ssh;branch=master \
 		  "
@@ -17,7 +17,9 @@ do_install_append () {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${sysconfdir}/dbus-1/system.d
 	install -d ${D}${bindir}
+	install -d ${D}${libdir}/firmware
 
+	install -m 0755 ${WORKDIR}/git/ws281x.bin ${D}${libdir}/firmware
 	install -m 0755 ${WORKDIR}/git/effects.py ${D}/home/root/led-service
 	install -m 0644 ${WORKDIR}/git/led.service	 ${D}${systemd_unitdir}/system
 	install -m 0755 ${WORKDIR}/git/led_clear	 ${D}${bindir}
@@ -35,5 +37,5 @@ do_install_append () {
 }
 
 SYSTEMD_SERVICE_${PN} = "startupLed.service  led.service"
-FILES_${PN} += " /home/root/led-service/* ${systemd_unitdir}/system/* ${sysconfdir}/dbus-1/system.d/* "
+FILES_${PN} += " /home/root/led-service/* ${systemd_unitdir}/system/* ${sysconfdir}/dbus-1/system.d/* ${libdir}/firmware/ws281x.bin"
 
