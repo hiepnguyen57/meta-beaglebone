@@ -3,7 +3,7 @@ DESCRIPTION = "this is a description "
 LICENSE = "Olli"
 LIC_FILES_CHKSUM = "file://README.md;md5=db578ad8efc88729badff79cf47aff39"
 HOMEPAGE = "https://github.com/olli-ai/wifi-manager"
-SRCREV = "e52725032ba0e8bd4f649e0d00f47dcc00eaa1ed"
+SRCREV = "b07176542c80778a52eb339790cc0546307d849f"
 SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh \
 			file://beeeep.mp3 \
 "

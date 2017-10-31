@@ -50,6 +50,9 @@ RDEPENDS_kernel-base_append_am437x-evm = " prueth-fw"
 RDEPENDS_kernel-base_append_am335x-evm = " prueth-fw"
 RDEPENDS_kernel-base_append_k2g = " prueth-fw"
 
+S = "${WORKDIR}/git"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/linux-ti-rt-4.4:"
 # Default is to package all dtb files for ti33x devices unless building
 # for the specific beaglebone machine.
 KERNEL_DEVICETREE_beaglebone = " \
@@ -63,5 +66,9 @@ PV = "4.4.91"
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
 PR = "r135"
 
-SRC_URI += "https://github.com/hoahiepnguyen/linux-stable-4.4.91-ti-rt.git;protocol=ssh;branch=master \
+SRC_URI += "git://git@github.com/hoahiepnguyen/linux-stable-4.4.91-ti-rt.git;protocol=ssh;branch=master \
             file://defconfig"
+SRC_URI[md5sum] = "636528ce5d3e94aa8f86f48f8525a664"
+SRC_URI[sha256sum] = "f997c7c4175eb95ec77a4feb8ec57593b4358820f22a6b2310cdfd5071de816d"
+
+
