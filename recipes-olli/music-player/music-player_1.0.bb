@@ -3,7 +3,7 @@ SUMMARY = "Music Player Application"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=7babb7265ab30500931b5bc5b011b67a"
 HOMEPAGE = "https://github.com/olli-ai/mp/"
-SRCREV = "26b993bff4a52b5b7bb3292d5360993577fa892b"
+SRCREV = "1566d33fa4bad3a47c34d38f0d2db331b8e0e068"
 SRC_URI = " \
             git://git@github.com/olli-ai/mp.git;protocol=ssh \
             file://music-player.service \
@@ -33,8 +33,6 @@ do_install_append() {
     install -m 0755 ${WORKDIR}/git/log.py ${D}/home/root/music-player/log.py
     install -m 0755 ${WORKDIR}/git/mplayer_main.py ${D}/home/root/music-player/mplayer_main.py
     install -m 0755 ${WORKDIR}/git/mpg123.py ${D}/home/root/music-player/mpg123.py
-    install -m 0755 ${WORKDIR}/git/mpg321.py ${D}/home/root/music-player/mpg321.py
-    install -m 0755 ${WORKDIR}/git/pactl.py ${D}/home/root/music-player/pactl.py
     install -m 0755 ${WORKDIR}/git/test_fade_volume.py ${D}/home/root/music-player/test_fade_volume.py
     install -m 0755 ${WORKDIR}/git/test_method.py ${D}/home/root/music-player/test_method.py
     install -m 0755 ${WORKDIR}/git/test_pulse.py ${D}/home/root/music-player/test_pulse.py

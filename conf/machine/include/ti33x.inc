@@ -20,7 +20,6 @@ MACHINE_GUI_CLASS = "bigscreen"
 MACHINE_KERNEL_PR = "ti"
 
 # Default providers, may need to override for specific machines
-PREFERRED_PROVIDER_virtual/kernel = "olli-linux"
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-olli"
 PREFERRED_PROVIDER_u-boot = "u-boot-olli"
 

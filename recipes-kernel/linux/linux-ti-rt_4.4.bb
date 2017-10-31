@@ -57,18 +57,21 @@ KERNEL_DEVICETREE_beaglebone = " \
 	am335x-bonegreen-wireless.dtb \
  "
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/olli-linux-4.4:"
+#FILESEXTRAPATHS_prepend := "${THISDIR}/olli-linux-4.4:"
 
-S = "${WORKDIR}/git"
+FILESEXTRAPATHS_prepend := "${THISDIR}/linux-ti-rt-4.4:"
+S = "${WORKDIR}/linux-stable-rcn-ee-4.4.91-ti-rt-r135"
 
-SRCREV = "9d3eb688d25df05d1b8eb01910a6cd838b6be70e"
-PV = "4.4.30"
+SRCREV = "9019958afde03788e01aca693e7c4e1658d5a639"
+PV = "4.4.91"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
-PR = "r1"
+PR = "r135"
 
-BRANCH = "olli-kernel"
-KERNEL_GIT_URI = "git://git@github.com/olli-ai/linux-stable-rcn-ee.git"
-KERNEL_GIT_PROTOCOL = "ssh"
-SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH} \
+#BRANCH = "tags/4.4.30-ti-r64"
+#KERNEL_GIT_URI = "git://git@github.com/RobertCNelson/linux-stable-rcn-ee.git"
+#KERNEL_GIT_PROTOCOL = "git"
+SRC_URI += "https://github.com/RobertCNelson/linux-stable-rcn-ee/archive/4.4.91-ti-rt-r135.tar.gz \
             file://defconfig"
+SRC_URI[md5sum] = "a23801c8006faeab71c4d2c0e7781e6c"
+SRC_URI[sha256sum] = "3333ed2e1905ad7328eef49b5172171dc8571b02813f4a04d63642dccd061d1f"

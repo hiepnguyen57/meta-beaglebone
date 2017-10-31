@@ -3,7 +3,7 @@ DESCRIPTION = "Wakeword detector using snowboy "
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=00a815132bf7705aedd88242f1ce17b7"
 HOMEPAGE = "https://github.com/olli-ai/WakeWord"
-SRCREV = "a1b69f49ba7060b8ec48bc6a7203e183aa8cac28"
+SRCREV = "0ee1998a3f2cde4b3554d6d7dd9577c354d7c149"
 SRC_URI = "	\
 			git://git@github.com/olli-ai/WakeWord.git;protocol=ssh;branch=c-dev \
 			file://alexa.umdl \
