@@ -3,7 +3,7 @@ Description=cloud manager
 After=network.target sound.target wakeword.service music-player.service
 
 [Service]
-ExecStart=/usr/local/bin/node home/root/cloud-service-manager/app.js > /dev/null 2 >&1
+ExecStart=/usr/bin/node home/root/cloud-services-manager/app.js > /dev/null 2 >&1
 Restart=on-failure
 RestartSec=1
 
