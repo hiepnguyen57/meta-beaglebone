@@ -77,6 +77,9 @@ DEV_EXTRAS = " \
     alsa-utils \
     hostapd \
     atlas-base \
+    libsoc \
+    glib-2.0 \
+    glib-2.0-dev \
  "
 
 EXTRA_TOOLS_INSTALL = " \
@@ -114,6 +117,7 @@ OLLI_APPS = " \
     nodejs \
     nodejs-npm \
     wakeword \
+    reset-button \
  "
 IMAGE_INSTALL += " \
     ${CORE_OS} \
