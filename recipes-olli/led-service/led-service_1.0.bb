@@ -3,7 +3,7 @@ DESCRIPTION = "Led service"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=d1a392063916cfb2ce577d226e43b735"
 HOMEPAGE = "https://github.com/olli-ai/led-service.git"
-SRCREV = "5e4b373a56b79cabc090067a732c5a633d700187"
+SRCREV = "570d742a91b45d6155c2ca10ca02bcb47ec132cc"
 SRC_URI = " \
 			git://git@github.com/olli-ai/led-service.git;protocol=ssh;branch=master \
 		  "
@@ -29,6 +29,7 @@ do_install_append () {
 	install -m 0755 ${WORKDIR}/git/led_wakeup	 ${D}${bindir}
 	install -m 0755 ${WORKDIR}/git/led_wakeup_on ${D}${bindir}
 	install -m 0755 ${WORKDIR}/git/led_wakeup_off ${D}${bindir}
+	install -m 0755 ${WORKDIR}/git/led_wifi_connected ${D}${bindir}
 	install -m 0755 ${WORKDIR}/git/led_spin ${D}${bindir}
 	install -m 0755 ${WORKDIR}/git/manager.py	 ${D}/home/root/led-service
 	install -m 0644 ${WORKDIR}/git/org.olli.led.conf	 ${D}${sysconfdir}/dbus-1/system.d

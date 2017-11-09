@@ -3,7 +3,7 @@ DESCRIPTION = "this is a description "
 LICENSE = "Olli"
 LIC_FILES_CHKSUM = "file://README.md;md5=db578ad8efc88729badff79cf47aff39"
 HOMEPAGE = "https://github.com/olli-ai/wifi-manager"
-SRCREV = "b07176542c80778a52eb339790cc0546307d849f"
+SRCREV = "827339b1637782cebf760269108f8b37b4d494a9"
 SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh \
 			file://beeeep.mp3 \
 "
@@ -34,4 +34,5 @@ do_install_append() {
 SYSTEMD_SERVICE_${PN} = "olli_wifi.service wifi_ap.service "
 
 FILES_${PN} += " ${systemd_unitdir}  /home/root/wifi-manager/* /home/root/wifi-manager/* /home/root/olli_wifi/open-wifi.sh /home/root/wifi-manager/wifi_list.json "
-FILES_${PN} += "/home/root/wifi-manager/node_modules/"
+#FILES_${PN} += "/home/root/wifi-manager/node_modules/"
+FILES_${PN}-staticdev += "/home/root/wifi-manager/node_modules/*"
