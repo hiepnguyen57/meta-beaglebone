@@ -1,0 +1,10 @@
+[Unit]
+Description=Reset OS
+After=led-rainbow.service
+[Service]
+Type=simple
+ExecStart=/opt/backup/scripts/restore-device.sh
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
