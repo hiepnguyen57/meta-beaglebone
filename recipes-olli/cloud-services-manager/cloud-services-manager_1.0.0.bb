@@ -3,7 +3,7 @@ DESCRIPTION = "Interface with user by using voice control"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=32979adb7182a1d4a6b800ee73a173bf"
 HOMEPAGE = "https://github.com/olli-ai/cloud-services-manager"
-SRCREV = "fae5e483527d3f92a051f7b1d257054d19fdba0c"
+SRCREV = "73402809d340d61004e24f1f8503686727ff656c"
 SRC_URI = " \
 			git://git@github.com/olli-ai/cloud-services-manager.git;protocol=ssh;branch=master \
 			file://cloud_manager.service \

@@ -14,6 +14,7 @@ CORE_OS = " \
     dhcp-server \
     rpm \
     bluez-alsa \
+    bluez-alsa-staticdev \
     wifi-manager \
     led-service \
  "
