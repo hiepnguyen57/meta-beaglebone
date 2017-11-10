@@ -28,9 +28,9 @@ tar -C ${PART} -xvf /opt/backup/core-olli-image-beaglebone.tar.xz && sync
 echo "========================================================="
 echo "        umount root partition and reboot new OS          "
 echo "========================================================="
-umount ${PART}
-kill $(ps aux | grep 'rainbow' | awk '{print $2}')
+
 /usr/bin/led_clear
+umount ${PART}
 reboot
 
 
