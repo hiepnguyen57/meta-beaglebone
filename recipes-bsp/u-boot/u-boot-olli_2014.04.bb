@@ -7,9 +7,9 @@ PROVIDES = "virtual/bootloader"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://README;md5=0d383de7600386d103feb2892c97b857"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot-olli-2017.09:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot-olli-2014.04:"
 
-PV = "2019.09"
+PV = "2014.04"
 PR = "r1"
 
 

@@ -1,0 +1,482 @@
+From 6c171b2f4992e89eb60d5ecd9609078dd15e1a9b Mon Sep 17 00:00:00 2001
+From: hoahiepnguyen <hiep@olli-ai.com>
+Date: Wed, 15 Nov 2017 16:14:13 +0700
+Subject: [PATCH] supported GPIO button for restoring
+
+---
+ arch/arm/dts/Makefile          |  3 +-
+ arch/arm/dts/am335x-custom.dts | 90 ++++++++++++++++++++++++++++++++++++++++++
+ board/ti/am335x/board.c        | 11 ++++--
+ board/ti/am335x/board.h        |  5 +++
+ board/ti/am335x/mux.c          | 11 +++++-
+ board/ti/common/board_detect.c | 24 +++++++++++
+ board/ti/common/board_detect.h | 38 ++++++++++++++++++
+ common/main.c                  | 52 +++++++++++++++++++++++-
+ configs/am335x_evm_defconfig   |  5 ++-
+ include/configs/am335x_evm.h   | 48 ++++++++++++++++------
+ 10 files changed, 266 insertions(+), 21 deletions(-)
+ create mode 100644 arch/arm/dts/am335x-custom.dts
+
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index 836a8c4..64ed890 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -116,7 +116,8 @@ dtb-$(CONFIG_AM33XX) += am335x-boneblack.dtb am335x-bone.dtb \
+ 	am335x-bonegreen.dtb \
+ 	am335x-icev2.dtb \
+ 	am335x-pxm50.dtb \
+-	am335x-rut.dtb
++	am335x-rut.dtb \
++	am335x-custom.dtb
+ dtb-$(CONFIG_AM43XX) += am437x-gp-evm.dtb am437x-sk-evm.dtb	\
+ 	am43x-epos-evm.dtb \
+ 	am437x-idk-evm.dtb
+diff --git a/arch/arm/dts/am335x-custom.dts b/arch/arm/dts/am335x-custom.dts
+new file mode 100644
+index 0000000..6db6cc3
+--- /dev/null
++++ b/arch/arm/dts/am335x-custom.dts
+@@ -0,0 +1,90 @@
++/*
++ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ */
++/dts-v1/;
++
++#include "am33xx.dtsi"
++#include "am335x-bone-common.dtsi"
++
++/ {
++    model = "TI AM335x BeagleBone Black";
++    compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
++    chosen {
++        stdout-path = &uart0;
++        tick-timer = &timer2;
++    };
++};
++
++&ldo3_reg {
++    regulator-min-microvolt = <1800000>;
++    regulator-max-microvolt = <1800000>;
++    regulator-always-on;
++};
++
++&mmc1 {
++    vmmc-supply = <&vmmcsd_fixed>;
++};
++
++&mmc2 {
++    vmmc-supply = <&vmmcsd_fixed>;
++    pinctrl-names = "default";
++    pinctrl-0 = <&emmc_pins>;
++    bus-width = <8>;
++    status = "okay";
++};
++
++&am33xx_pinmux {
++    nxp_hdmi_bonelt_pins: nxp_hdmi_bonelt_pins {
++        pinctrl-single,pins = <
++            0x1b0 0x03      /* xdma_event_intr0, OMAP_MUX_MODE3 | AM33XX_PIN_OUTPUT */
++            0xa0 0x08       /* lcd_data0.lcd_data0, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xa4 0x08       /* lcd_data1.lcd_data1, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xa8 0x08       /* lcd_data2.lcd_data2, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xac 0x08       /* lcd_data3.lcd_data3, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xb0 0x08       /* lcd_data4.lcd_data4, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xb4 0x08       /* lcd_data5.lcd_data5, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xb8 0x08       /* lcd_data6.lcd_data6, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xbc 0x08       /* lcd_data7.lcd_data7, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xc0 0x08       /* lcd_data8.lcd_data8, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xc4 0x08       /* lcd_data9.lcd_data9, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xc8 0x08       /* lcd_data10.lcd_data10, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xcc 0x08       /* lcd_data11.lcd_data11, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xd0 0x08       /* lcd_data12.lcd_data12, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xd4 0x08       /* lcd_data13.lcd_data13, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xd8 0x08       /* lcd_data14.lcd_data14, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xdc 0x08       /* lcd_data15.lcd_data15, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT | AM33XX_PULL_DISA */
++            0xe0 0x00       /* lcd_vsync.lcd_vsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
++            0xe4 0x00       /* lcd_hsync.lcd_hsync, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
++            0xe8 0x00       /* lcd_pclk.lcd_pclk, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
++            0xec 0x00       /* lcd_ac_bias_en.lcd_ac_bias_en, OMAP_MUX_MODE0 | AM33XX_PIN_OUTPUT */
++        >;
++    };
++    nxp_hdmi_bonelt_off_pins: nxp_hdmi_bonelt_off_pins {
++        pinctrl-single,pins = <
++            0x1b0 0x03      /* xdma_event_intr0, OMAP_MUX_MODE3 | AM33XX_PIN_OUTPUT */
++        >;
++    };
++};
++
++&lcdc {
++    status = "okay";
++};
++
++/ {
++    hdmi {
++        compatible = "ti,tilcdc,slave";
++        i2c = <&i2c0>;
++        pinctrl-names = "default", "off";
++        pinctrl-0 = <&nxp_hdmi_bonelt_pins>;
++        pinctrl-1 = <&nxp_hdmi_bonelt_off_pins>;
++        status = "okay";
++    };
++};
++
++&rtc {
++    system-power-controller;
++};
+diff --git a/board/ti/am335x/board.c b/board/ti/am335x/board.c
+index fc1353a..fbf4d5a 100644
+--- a/board/ti/am335x/board.c
++++ b/board/ti/am335x/board.c
+@@ -66,7 +66,8 @@ static struct ctrl_dev *cdev = (struct ctrl_dev *)CTRL_DEVICE_BASE;
+  */
+ static inline int __maybe_unused read_eeprom(void)
+ {
+-	return ti_i2c_eeprom_am_get(-1, CONFIG_SYS_I2C_EEPROM_ADDR);
++	//return ti_i2c_eeprom_am_get(-1, CONFIG_SYS_I2C_EEPROM_ADDR);
++	return ti_i2c_eeprom_am_set("AM335X_CUSTOM", "1.0.0");
+ }
+ 
+ #ifndef CONFIG_DM_SERIAL
+@@ -495,8 +496,12 @@ void sdram_init(void)
+ 			   &ddr3_icev2_cmd_ctrl_data, &ddr3_icev2_emif_reg_data,
+ 			   0);
+ 	else
+-		config_ddr(266, &ioregs, &ddr2_data,
+-			   &ddr2_cmd_ctrl_data, &ddr2_emif_reg_data, 0);
++		// config_ddr(266, &ioregs, &ddr2_data,
++		// 	   &ddr2_cmd_ctrl_data, &ddr2_emif_reg_data, 0);
++		config_ddr(400, &ioregs_bonelt,
++			&ddr3_beagleblack_data,
++			&ddr3_beagleblack_cmd_ctrl_data,
++			&ddr3_beagleblack_emif_reg_data, 0);
+ }
+ #endif
+ 
+diff --git a/board/ti/am335x/board.h b/board/ti/am335x/board.h
+index 9776df7..594c030 100644
+--- a/board/ti/am335x/board.h
++++ b/board/ti/am335x/board.h
+@@ -21,6 +21,11 @@ static inline int board_is_bone_lt(void)
+ 	return board_ti_is("A335BNLT");
+ }
+ 
++static inline int board_is_custom(void)
++{
++    return board_ti_is("AM335X_CUSTOM");
++}
++
+ static inline int board_is_bbg1(void)
+ {
+ 	return board_is_bone_lt() && !strncmp(board_ti_get_rev(), "BBG1", 4);
+diff --git a/board/ti/am335x/mux.c b/board/ti/am335x/mux.c
+index 8afa5f9..2413e85 100644
+--- a/board/ti/am335x/mux.c
++++ b/board/ti/am335x/mux.c
+@@ -397,7 +397,14 @@ void enable_board_pin_mux(void)
+ 		configure_module_pin_mux(rmii1_pin_mux);
+ 		configure_module_pin_mux(spi0_pin_mux);
+ 	} else {
+-		puts("Unknown board, cannot configure pinmux.");
+-		hang();
++		// puts("Unknown board, cannot configure pinmux.");
++		// hang();
++		/* Beaglebone LT pinmux */
++		puts("Hiep debug: run here \n");
++		configure_module_pin_mux(mii1_pin_mux);
++		configure_module_pin_mux(mmc0_pin_mux);
++		configure_module_pin_mux(nand_pin_mux);
++		configure_module_pin_mux(mmc1_pin_mux);
++
+ 	}
+ }
+diff --git a/board/ti/common/board_detect.c b/board/ti/common/board_detect.c
+index 6e7ca91..d1aa666 100644
+--- a/board/ti/common/board_detect.c
++++ b/board/ti/common/board_detect.c
+@@ -116,6 +116,30 @@ static int __maybe_unused ti_i2c_eeprom_get(int bus_addr, int dev_addr,
+ 	return 0;
+ }
+ 
++int __maybe_unused ti_i2c_eeprom_am_set(const char *name, const char *rev)
++{
++	struct ti_common_eeprom *ep;
++
++	if (!name || !rev)
++		return -1;
++
++	ep = TI_EEPROM_DATA;
++	if (ep->header == TI_EEPROM_HEADER_MAGIC)
++		goto already_set;
++
++	/* Set to 0 all fields */
++	memset(ep, 0, sizeof(*ep));
++	strncpy(ep->name, name, TI_EEPROM_HDR_NAME_LEN);
++	strncpy(ep->version, rev, TI_EEPROM_HDR_REV_LEN);
++	/* Some dummy serial number to identify the platform */
++	strncpy(ep->serial, "0000", TI_EEPROM_HDR_SERIAL_LEN);
++	/* Mark it with a valid header */
++	ep->header = TI_EEPROM_HEADER_MAGIC;
++
++already_set:
++	return 0;
++}
++
+ int __maybe_unused ti_i2c_eeprom_am_get(int bus_addr, int dev_addr)
+ {
+ 	int rc;
+diff --git a/board/ti/common/board_detect.h b/board/ti/common/board_detect.h
+index 343fcb4..988db62 100644
+--- a/board/ti/common/board_detect.h
++++ b/board/ti/common/board_detect.h
+@@ -193,4 +193,42 @@ u64 board_ti_get_emif2_size(void);
+  */
+ void set_board_info_env(char *name);
+ 
++/**
++ * board_ti_set_ethaddr- Sets the ethaddr environment from EEPROM
++ * @index: The first eth<index>addr environment variable to set
++ *
++ * EEPROM should be already read before calling this function.
++ * The EEPROM contains 2 MAC addresses which define the MAC address
++ * range (i.e. first and last MAC address).
++ * This function sets the ethaddr environment variable for all
++ * the available MAC addresses starting from eth<index>addr.
++ */
++void board_ti_set_ethaddr(int index);
++
++/**
++ * board_ti_was_eeprom_read() - Check to see if the eeprom contents have been read
++ *
++ * This function is useful to determine if the eeprom has already been read and
++ * its contents have already been loaded into memory. It utiltzes the magic
++ * number that the header value is set to upon successful eeprom read.
++ */
++bool board_ti_was_eeprom_read(void);
++
++/**
++ * ti_i2c_eeprom_am_set() - Setup the eeprom data with predefined values
++ * @name:	Name of the board
++ * @rev:	Revision of the board
++ *
++ * In some cases such as in RTC-only mode, we are able to skip reading eeprom
++ * and wasting i2c based initialization time by using predefined flags for
++ * detecting what platform we are booting on. For those platforms, provide
++ * a handy function to pre-program information.
++ *
++ * NOTE: many eeprom information such as serial number, mac address etc is not
++ * available.
++ *
++ * Return: 0 if all went fine, else return error.
++ */
++int ti_i2c_eeprom_am_set(const char *name, const char *rev);
++
+ #endif	/* __BOARD_DETECT_H */
+diff --git a/common/main.c b/common/main.c
+index 2116a9e..944906a 100644
+--- a/common/main.c
++++ b/common/main.c
+@@ -12,6 +12,8 @@
+ #include <cli.h>
+ #include <console.h>
+ #include <version.h>
++#include <asm/gpio.h>
++#include <asm/io.h>
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
+@@ -39,6 +41,52 @@ static void run_preboot_environment_command(void)
+ 	}
+ #endif /* CONFIG_PREBOOT */
+ }
++#define GPIO_BUTTON		49
++#define GPIO_LED		2
++
++static ulong measureTimeButtonPressed(void)
++{
++	int buttonState;
++	ulong start;
++	ulong timeMeasure = 0;
++
++	start = get_timer(0);
++	buttonState = gpio_get_value(GPIO_BUTTON);
++	while(buttonState > 0)
++	{
++		//run here waiting for button released
++		buttonState = gpio_get_value(GPIO_BUTTON); //Update button state
++	}
++	timeMeasure = get_timer(start);
++
++	printf("GPIO_BUTTON: Time taken: %lu millisec\n", timeMeasure);
++
++	return timeMeasure;
++}
++
++static void check_gpio_pin_rst(void)
++{
++	ulong val;
++
++	gpio_request(GPIO_LED, "led");
++	gpio_request(GPIO_BUTTON, "button");
++
++	gpio_direction_input(GPIO_BUTTON);
++	gpio_direction_output(GPIO_LED, 1);
++
++	val = measureTimeButtonPressed();
++
++	if(val > 3000)
++	{
++		printf("RESTORE FIRMWARE NOW, PLEASE KEEP CABLE WHILE RESTORING\n");
++		gpio_direction_output(GPIO_LED, 0);
++	}
++	else {
++		gpio_direction_output(GPIO_LED, 1);
++	}
++	gpio_free(GPIO_LED);
++	gpio_free(GPIO_BUTTON);
++}
+ 
+ /* We come here after U-Boot is initialised and ready to process commands */
+ void main_loop(void)
+@@ -52,7 +100,7 @@ void main_loop(void)
+ #endif /* CONFIG_VERSION_VARIABLE */
+ 
+ 	cli_init();
+-
++	check_gpio_pin_rst();
+ 	run_preboot_environment_command();
+ 
+ #if defined(CONFIG_UPDATE_TFTP)
+@@ -60,6 +108,8 @@ void main_loop(void)
+ #endif /* CONFIG_UPDATE_TFTP */
+ 
+ 	s = bootdelay_process();
++	udelay(30);
++
+ 	if (cli_process_fdt(&s))
+ 		cli_secure_boot_cmd(s);
+ 
+diff --git a/configs/am335x_evm_defconfig b/configs/am335x_evm_defconfig
+index e5a1696..daf9968 100644
+--- a/configs/am335x_evm_defconfig
++++ b/configs/am335x_evm_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_AM33XX=y
+ CONFIG_TARGET_AM335X_EVM=y
+ CONFIG_SPL_STACK_R_ADDR=0x82000000
+-CONFIG_DEFAULT_DEVICE_TREE="am335x-evm"
++CONFIG_DEFAULT_DEVICE_TREE="am335x-custom"
+ CONFIG_FIT=y
+ CONFIG_SYS_EXTRA_OPTIONS="NAND"
+ CONFIG_SPL_LOAD_FIT=y
+@@ -35,7 +35,7 @@ CONFIG_CMD_EXT4_WRITE=y
+ CONFIG_CMD_FAT=y
+ CONFIG_CMD_FS_GENERIC=y
+ CONFIG_OF_CONTROL=y
+-CONFIG_OF_LIST="am335x-evm am335x-bone am335x-boneblack am335x-evmsk am335x-bonegreen am335x-icev2"
++CONFIG_OF_LIST="am335x-evm am335x-bone am335x-boneblack am335x-evmsk am335x-bonegreen am335x-icev2 am335x-custom"
+ # CONFIG_BLK is not set
+ CONFIG_DFU_MMC=y
+ CONFIG_DFU_NAND=y
+@@ -60,3 +60,4 @@ CONFIG_G_DNL_VENDOR_NUM=0x0451
+ CONFIG_G_DNL_PRODUCT_NUM=0xd022
+ CONFIG_RSA=y
+ CONFIG_SPL_OF_LIBFDT=y
++CONFIG_BOOTDELAY=0
+\ No newline at end of file
+diff --git a/include/configs/am335x_evm.h b/include/configs/am335x_evm.h
+index ec70b72..fc98025 100644
+--- a/include/configs/am335x_evm.h
++++ b/include/configs/am335x_evm.h
+@@ -90,12 +90,18 @@
+ 	func(DHCP, dhcp, na)
+ 
+ #define CONFIG_BOOTCOMMAND \
+-	"run findfdt; " \
+-	"run init_console; " \
+-	"run envboot; " \
+-	"run distro_bootcmd"
+-
+-#include <config_distro_bootcmd.h>
++	"if run userbutton; then " \
++		"setenv bootenv restore.txt;" \
++	"else " \
++		"setenv bootenv uEnv.txt;" \
++	"fi;" \
++	"gpio clear 56; " \
++	"gpio clear 55; " \
++	"gpio clear 54; " \
++	"setenv mmcdev 1; " \
++	"setenv bootpart 1:1; " \
++	"run mmcboot;" \
++	"run nandboot;" \
+ 
+ #ifndef CONFIG_SPL_BUILD
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+@@ -126,6 +132,8 @@
+ 		"${optargs} " \
+ 		"root=${ramroot} " \
+ 		"rootfstype=${ramrootfstype}\0" \
++	"bootenv=uEnv.txt\0" \
++	"loadbootenv=load mmc ${bootpart} ${loadaddr} ${bootenv}\0" \
+ 	"loadramdisk=load mmc ${mmcdev} ${rdaddr} ramdisk.gz\0" \
+ 	"loadimage=load mmc ${bootpart} ${loadaddr} ${bootdir}/${bootfile}\0" \
+ 	"loadfdt=load mmc ${bootpart} ${fdtaddr} ${bootdir}/${fdtfile}\0" \
+@@ -145,11 +153,26 @@
+ 		"fi;\0" \
+ 	"mmcboot=mmc dev ${mmcdev}; " \
+ 		"if mmc rescan; then " \
++			"gpio set 54;" \
+ 			"echo SD/MMC found on device ${mmcdev};" \
+-			"run envboot; " \
+-			"if run loadimage; then " \
+-				"run mmcloados;" \
++			"if run loadbootenv; then " \
++				"gpio set 55;" \
++				"echo Loaded environment from ${bootenv};" \
++				"run importbootenv;" \
++			"fi;" \
++			"if test -n $cape; then " \
++				"if test -e mmc ${bootpart} ${fdtdir}/$fdtbase-$cape.dtb; then " \
++					"setenv fdtfile $fdtbase-$cape.dtb; " \
++				"fi; " \
++				"echo using: $fdtfile...; " \
++			"fi; " \
++			"echo Checking if uenvcmd is set ...;" \
++			"if test -n $uenvcmd; then " \
++				"gpio set 56; " \
++				"echo Running uenvcmd ...;" \
++				"run uenvcmd;" \
+ 			"fi;" \
++			"echo; echo uenvcmd was not defined in uEnv.txt ...;"\
+ 		"fi;\0" \
+ 	"spiboot=echo Booting from spi ...; " \
+ 		"run spiargs; " \
+@@ -172,6 +195,8 @@
+ 			"setenv fdtfile am335x-evmsk.dtb; fi; " \
+ 		"if test $board_name = A335_ICE; then " \
+ 			"setenv fdtfile am335x-icev2.dtb; fi; " \
++		"if test $board_name = AM335X_CUSTOM; then " \
++			"setenv fdtfile am335x-custom.dtb; fi; " \
+ 		"if test $fdtfile = undefined; then " \
+ 			"echo WARNING: Could not determine device tree to use; fi; \0" \
+ 	"init_console=" \
+@@ -180,10 +205,9 @@
+ 		"else " \
+ 			"setenv console ttyO0,115200n8;" \
+ 		"fi;\0" \
++	"userbutton=gpio input 2;\0" \
+ 	NANDARGS \
+-	NETARGS \
+-	DFUARGS \
+-	BOOTENV
++	DFUARGS
+ #endif
+ 
+ /* NS16550 Configuration */
+-- 
+2.7.4
+
