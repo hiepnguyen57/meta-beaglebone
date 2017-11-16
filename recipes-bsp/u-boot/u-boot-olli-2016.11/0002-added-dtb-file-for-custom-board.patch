@@ -1,0 +1,25 @@
+From 2e677dd93db981df6928848b924ceb8182460dcc Mon Sep 17 00:00:00 2001
+From: hoahiepnguyen <hiep@olli-ai.com>
+Date: Thu, 16 Nov 2017 10:40:18 +0700
+Subject: [PATCH 2/2] added dtb file for custom board
+
+---
+ board/ti/am335x/board.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/board/ti/am335x/board.c b/board/ti/am335x/board.c
+index fbf4d5a..22b8462 100644
+--- a/board/ti/am335x/board.c
++++ b/board/ti/am335x/board.c
+@@ -865,6 +865,8 @@ int board_fit_config_name_match(const char *name)
+ 		return 0;
+ 	else if (board_is_icev2() && !strcmp(name, "am335x-icev2"))
+ 		return 0;
++	else if (board_is_custom() && !strcmp(name, "am335x-custom"))
++		return 0;
+ 	else
+ 		return -1;
+ }
+-- 
+2.7.4
+

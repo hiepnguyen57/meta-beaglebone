@@ -14,6 +14,7 @@ SRCREV = "d8bdfc80da39211d95f10d24e79f2e867305f71b"
 SRC_URI = " \
     git://git.denx.de/u-boot.git;branch=master;protocol=git \
     file://0001-supported-GPIO-button-for-restoring.patch \
+    file://0002-added-dtb-file-for-custom-board.patch \
 "
 
 SPL_BINARY = "MLO"
