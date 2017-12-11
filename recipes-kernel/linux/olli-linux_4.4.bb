@@ -61,7 +61,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/olli-linux-4.4:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "9d3eb688d25df05d1b8eb01910a6cd838b6be70e"
+SRCREV = "7a146c8f92da09b16d605c3ac0d801d8add37f7a"
 PV = "4.4.30"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild

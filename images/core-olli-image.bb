@@ -111,6 +111,7 @@ MQTT = " \
     lsof    \
     lzop    \
     libusb1 \
+    sox \
  "
 OLLI_APPS = " \
     cloud-services-manager \
@@ -128,5 +129,4 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
-    ${OLLI_APPS} \
  "
