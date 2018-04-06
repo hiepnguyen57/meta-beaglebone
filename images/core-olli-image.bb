@@ -113,6 +113,7 @@ MQTT = " \
     libusb1 \
     sox \
  "
+
 OLLI_APPS = " \
     cloud-services-manager \
     music-player \
@@ -120,7 +121,9 @@ OLLI_APPS = " \
     nodejs-npm \
     wakeword \
     reset-button \
+    tlv320aic32xx \
  "
+
 IMAGE_INSTALL += " \
     ${CORE_OS} \
     ${KERNEL_EXTRA_INSTALL} \
