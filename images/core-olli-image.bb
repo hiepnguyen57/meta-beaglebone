@@ -121,7 +121,6 @@ OLLI_APPS = " \
     nodejs-npm \
     wakeword \
     reset-button \
-    tlv320aic32xx \
  "
 
 IMAGE_INSTALL += " \
@@ -132,4 +131,5 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
+    ${OLLI_APPS} \
  "
