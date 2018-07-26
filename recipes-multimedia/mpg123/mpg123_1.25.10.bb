@@ -11,9 +11,8 @@ LICENSE_FLAGS = "commercial"
 LIC_FILES_CHKSUM = "file://COPYING;md5=1e86753638d3cf2512528b99079bc4f3"
 
 SRC_URI = "https://www.mpg123.de/download/${BP}.tar.bz2"
-
-SRC_URI[md5sum] = "1b3e8765aa608e306ede1ec507b67b23"
-SRC_URI[sha256sum] = "da2941c1905b5776d5468209896502a8d5257966dfadc07f1e4ea105cc515900"
+SRC_URI[md5sum] = "ea32caa61d41d8be797f0b04a1b43ad9"
+SRC_URI[sha256sum] = "6c1337aee2e4bf993299851c70b7db11faec785303cfca3a5c3eb5f329ba7023"
 
 inherit autotools pkgconfig
 
@@ -44,15 +43,9 @@ AUDIOMODS += "${@bb.utils.contains('PACKAGECONFIG', 'sdl', 'sdl', '', d)}"
 EXTRA_OECONF = " \
     --enable-shared \
     --with-audio='${AUDIOMODS}' \
-    --with-module-suffix=.so \
     ${@bb.utils.contains('TUNE_FEATURES', 'neon', '--with-cpu=neon', '', d)} \
     ${@bb.utils.contains('TUNE_FEATURES', 'altivec', '--with-cpu=altivec', '', d)} \
 "
-
-# The x86 assembler optimisations contains text relocations and there are no
-# upstream plans to fix them: http://sourceforge.net/p/mpg123/bugs/168/
-INSANE_SKIP_${PN}_append_x86 = " textrel"
-
 # Fails to build with thumb-1 (qemuarm)
 #| {standard input}: Assembler messages:
 #| {standard input}:47: Error: selected processor does not support Thumb mode `smull r5,r6,r7,r4'
