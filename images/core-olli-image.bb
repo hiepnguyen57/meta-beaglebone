@@ -15,7 +15,6 @@ CORE_OS = " \
     rpm \
     bluez-alsa \
     bluez-alsa-staticdev \
-    wifi-manager \
     led-service \
  "
 
@@ -81,14 +80,16 @@ DEV_EXTRAS = " \
     libsoc \
     glib-2.0 \
     glib-2.0-dev \
+    nodejs \
+    nodejs-npm \
  "
 
 EXTRA_TOOLS_INSTALL = " \
     bc \
     bison \
     ca-certificates \
-    networkmanager \
-    networkmanager-nmtui \
+    connman \
+    connman-client \
     curl \
     dosfstools \
     i2c-tools \
@@ -111,13 +112,12 @@ MQTT = " \
     lsof    \
     lzop    \
     libusb1 \
+    libusb1-dev \
  "
 
 OLLI_APPS = " \
     cloud-services-manager \
     music-player \
-    nodejs \
-    nodejs-npm \
     wakeword \
     reset-button \
  "
