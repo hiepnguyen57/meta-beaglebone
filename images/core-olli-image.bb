@@ -15,7 +15,6 @@ CORE_OS = " \
     rpm \
     bluez-alsa \
     bluez-alsa-staticdev \
-    led-service \
  "
 
 KERNEL_EXTRA_INSTALL = " \
@@ -113,13 +112,13 @@ MQTT = " \
     lzop    \
     libusb1 \
     libusb1-dev \
+    libcurl \
  "
 
 OLLI_APPS = " \
-    cloud-services-manager \
+    init-for-starting \
     music-player \
-    wakeword \
-    reset-button \
+    dfu-util \
  "
 
 IMAGE_INSTALL += " \
@@ -130,4 +129,5 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
+    ${OLLI_APPS} \
  "
