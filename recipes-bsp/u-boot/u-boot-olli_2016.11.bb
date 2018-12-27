@@ -1,4 +1,6 @@
 require u-boot.inc
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://README;md5=4ca38b099eee9d15d8ab9b9730d9c0b2"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot-olli-2016.11:"
 
@@ -10,11 +12,9 @@ COMPATIBLE_MACHINE = "beaglebone"
 UBOOT_LOCALVERSION = "-olli"
 
 # v2016.11-rc3
-SRCREV = "d8bdfc80da39211d95f10d24e79f2e867305f71b"
+SRCREV = "693960fbf9099dbc53276c6510c8c05b395a0ce5"
 SRC_URI = " \
-    git://git.denx.de/u-boot.git;branch=master;protocol=git \
-    file://0001-supported-GPIO-button-for-restoring.patch \
-    file://0002-added-dtb-file-for-custom-board.patch \
+    git://git@github.com/olli-ai/u-boot-2016.11.git;branch=master;protocol=ssh \
 "
 
 SPL_BINARY = "MLO"
