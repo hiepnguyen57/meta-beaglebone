@@ -2,13 +2,13 @@
 # like I did here with findfdtfile.
 # If you do not provide an uEnv.txt, then am335x-bonegreen-wireless.dtb
 # will be the default. (Hard coded in u-boot).
-# Custom for Beaglebone Green Wireless
+# Custom for OMNI SMART SPEAKER
 
 bootpart=1:2
 bootdir=/boot
 
 bootfile=zImage
-fdtfile=am335x-bonegreen-wireless.dtb
+fdtfile=am335x-olli-smartspeaker.dtb
 
 console=ttyO0,115200n8
 fdtaddr=0x88000000

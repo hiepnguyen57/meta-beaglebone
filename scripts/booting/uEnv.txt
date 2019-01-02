@@ -8,7 +8,8 @@ bootpart=1:2
 bootdir=/boot
 
 bootfile=zImage
-fdtfile=am335x-bonegreen-wireless.dtb
+#fdtfile=am335x-bonegreen-wireless.dtb
+fdtfile=am335x-olli-smartspeaker.dtb
 
 console=ttyO0,115200n8
 fdtaddr=0x88000000
