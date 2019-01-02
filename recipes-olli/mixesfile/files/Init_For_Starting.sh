@@ -1,4 +1,4 @@
-#GPIO61 as BOOT PIN
+#GPIO49 as BOOT PIN
 #GPIO66 as NRST PIN
 #GPIO48 as INPUT PIN
 #GPIO67 as OUTPUT PIN
@@ -25,3 +25,6 @@ echo 1 > /sys/class/gpio/gpio67/value
 sleep 0.1
 echo 0 > /sys/class/gpio/gpio67/value
 i2cset -y 2 0x68 0x00 0x35 0x38 i
+
+#Set DNS
+echo 'nameserver 8.8.8.8' > /etc/resolv.conf

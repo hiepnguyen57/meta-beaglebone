@@ -75,7 +75,6 @@ DEV_EXTRAS = " \
     sox \
     alsa-utils \
     hostapd \
-    atlas-base \
     libsoc \
     glib-2.0 \
     glib-2.0-dev \
@@ -112,7 +111,6 @@ MQTT = " \
     lzop    \
     libusb1 \
     libusb1-dev \
-    libcurl \
  "
 
 OLLI_APPS = " \

@@ -55,20 +55,21 @@ RDEPENDS_kernel-base_append_k2g = " prueth-fw"
 KERNEL_DEVICETREE_beaglebone = " \
 	am335x-boneblack.dtb \
 	am335x-bonegreen-wireless.dtb \
+    am335x-olli-smartspeaker.dtb \
  "
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/olli-linux-4.4:"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "a3d194bf39926cee22f69fdf6a659efa88e1bb71"
+SRCREV = "503b5a97e9d4fc6b31e94ca8efe8e6d114a2dc7a"
 PV = "4.4.30"
 
 # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
 PR = "r1"
 
-BRANCH = "olli-kernel"
-KERNEL_GIT_URI = "git://git@github.com/olli-ai/linux-stable-rcn-ee.git"
+BRANCH = "master"
+KERNEL_GIT_URI = "git://git@github.com/olli-ai/olli-kernel-src.git"
 KERNEL_GIT_PROTOCOL = "ssh"
 SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH} \
             file://defconfig"
