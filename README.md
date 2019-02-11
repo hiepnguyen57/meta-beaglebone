@@ -11,7 +11,7 @@ The yocto version is 2.2.1 the [morty] branch
 
 The 4.4.30 Linux kernel comes from the olli-linux repository.
 
-The u-boot version is 2014.04
+The u-boot version is 2016.12
 
 The root file system base on `meta-ti` layer
 
@@ -80,7 +80,7 @@ dark@hiepnguyen:~/yocto_release/poky$ git clone -b morty git://git.openembedded.
 ### Clone the `meta-olli` repository
 
 ```
-dark@hiepnguyen:~/yocto_release/poky$ git clone git://github.com:hoahiepnguyen/meta-olli.git
+dark@hiepnguyen:~/yocto_release/poky$ git clone git://github.com:olli-ai/meta-olli.git
 ```
 
 ### Clone the `meta-nodejs` repository
