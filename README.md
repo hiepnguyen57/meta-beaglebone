@@ -89,17 +89,6 @@ dark@hiepnguyen:~/yocto_release/poky$ git clone git://github.com:hoahiepnguyen/m
 dark@hiepnguyen:~/yocto_release$ git clone -b morty https://github.com/imyller/meta-nodejs.git
 ```
 
-### Download toolchain to build u-boot
-
-Create the `toolchains` folder
-```
-dark@hiepnguyen:~$ cd poky
-dark@hiepnguyen:~/yocto_release/poky$ mkdir toolchains
-dark@hiepnguyen:~/yocto_release/poky$ cd toolchains
-```
-
-Download `gcc-linaro-arm-linux-gnueabihf-4.7-2013.03-20130313_linux.tar.bz2` compiler link at `https://releases.linaro.org/archive/13.03/components/toolchain/binaries/`
-
 ## Building
 
 ### Initialize the build directory
