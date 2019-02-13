@@ -65,7 +65,8 @@ cd $WORK
 git clone git://git.yoctoproject.org/poky.git
 cd poky
 git checkout -b morty 7d5822bf4cb2089687c3c9a908cf4a4ef4e9a53a
-
+if Ubuntu 18.04, you will checkout at: 
+git checkout -b morty bfea1efa7b6e5abceac30da937adea4a2fa8d8d3
 ```
 
 * Then the `meta-openembedded` repository
@@ -74,6 +75,8 @@ cd $WORK
 git clone git://git.openembedded.org/meta-openembedded
 cd meta-openembedded
 git checkout -b morty fe5c83312de11e80b85680ef237f8acb04b4b26e
+if Ubuntu 18.04, you will checkout at: 
+git checkout -b morty 997caf9146cd3797cd054e2adebd1fbb4df91911
 ```
 
 ### Clone the `meta-nodejs` repository
