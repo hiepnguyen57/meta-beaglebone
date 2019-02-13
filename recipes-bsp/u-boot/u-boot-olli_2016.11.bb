@@ -14,7 +14,7 @@ UBOOT_LOCALVERSION = "-olli"
 # v2016.11-rc3
 SRCREV = "693960fbf9099dbc53276c6510c8c05b395a0ce5"
 SRC_URI = " \
-    git://git@github.com/olli-ai/u-boot-2016.11.git;branch=master;protocol=ssh \
+    git://git@github.com/olli-ai/u-boot.git;branch=master;protocol=ssh \
 "
 
 SPL_BINARY = "MLO"
