@@ -28,7 +28,7 @@ The Ubuntu version is 16.04 64-bit servers for builds. Older version should work
 * You will need at least the following packages installed
 
 ```
-sudo apt-get istnall build-essential chrpath diffstat gawk git libncurses5-dev pkg-config subversion texi2html texinfo
+sudo apt-get install build-essential chrpath diffstat gawk git libncurses5-dev pkg-config subversion texi2html texinfo
 ```
 
 * For 16.04 you also need to install python 2.7 package that the Yocto 2.2 branch requires
