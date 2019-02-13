@@ -1,9 +1,10 @@
 SUMMARY= "Init for starting"
 DESCRIPTION = " Added some files which need to start music player"
 LICENSE = "LGPLv2.1"
-LIC_FILES_CHKSUM = "file://README.md;md5=d41d8cd98f00b204e9800998ecf8427e"
+LIC_FILES_CHKSUM = "file://README.md;md5=a798e7084bab7b87989b3717e64189b2"
 
 SRC_URI = " \
+			file://README.md \
 			file://kernel-load-micarray.service \
 			file://asound.conf \
 			file://machine-info \
@@ -16,7 +17,7 @@ SRC_URI = " \
 
 DEPENDS = "alsa-lib "
 RDEPENDS_${PN} += "bash "
-S = "${WORKDIR/git}"
+S = "${WORKDIR}"
 
 inherit systemd pkgconfig
 
