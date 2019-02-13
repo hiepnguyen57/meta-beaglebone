@@ -175,7 +175,7 @@ Power on the mainboard and switch to usb boot by press `boot configuration` butt
 `lsblk` is convenient for finding the eMMC card.
 
 For exmple:
-```dark@hiepnguyen:~$ lsblk 
+```$ lsblk 
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sdb      8:16   0 931,5G  0 disk 
 ├─sdb2   8:18   0 685,6G  0 part 
