@@ -86,8 +86,8 @@ EXTRA_TOOLS_INSTALL = " \
     bc \
     bison \
     ca-certificates \
-    connman \
-    connman-client \
+    networkmanager \
+    networkmanager-nmtui \
     curl \
     dosfstools \
     i2c-tools \
@@ -114,7 +114,7 @@ MQTT = " \
  "
 
 OLLI_APPS = " \
-    init-for-starting \
+    intial-setup \
     music-player \
     dfu-util \
  "
@@ -127,5 +127,4 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
-    ${OLLI_APPS} \
  "
