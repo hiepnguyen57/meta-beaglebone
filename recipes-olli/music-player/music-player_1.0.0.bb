@@ -53,6 +53,7 @@ do_install_append () {
 
 	cp -R ${WORKDIR}/git/node_modules ${D}/home/root/music-player
 	rm -R ${D}/home/root/music-player/node_modules/put/test
+	cp -R ${WORKDIR}/git/Sounds ${D}/home/root/music-player
 
 }
 
