@@ -117,6 +117,7 @@ OLLI_APPS = " \
     intial-setup \
     music-player \
     dfu-util \
+    wifi-manager \
  "
 
 IMAGE_INSTALL += " \
@@ -127,4 +128,5 @@ IMAGE_INSTALL += " \
     ${DEV_EXTRAS} \
     ${EXTRA_TOOLS_INSTALL} \
     ${MQTT} \
+    ${OLLI_APPS} \
  "

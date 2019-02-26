@@ -1,10 +1,10 @@
 SUMMARY = "this is a summary"
 DESCRIPTION = "this is a description "
-LICENSE = "Olli"
-LIC_FILES_CHKSUM = "file://README.md;md5=db578ad8efc88729badff79cf47aff39"
+LICENSE = "LGPLv2.1"
+LIC_FILES_CHKSUM = "file://README.md;md5=ae95da61294eb45669cf119f236d89e3"
 HOMEPAGE = "https://github.com/olli-ai/wifi-manager"
-SRCREV = "827339b1637782cebf760269108f8b37b4d494a9"
-SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh \
+SRCREV = "745a0fb9dea8507a9a1e704b50f3a8fb471e7f53"
+SRC_URI = "git://git@github.com/olli-ai/wifi-manager.git;protocol=ssh;branch=master \
 			file://beeeep.mp3 \
 "
 DEPENDS += " nodejs glibc networkmanager"
