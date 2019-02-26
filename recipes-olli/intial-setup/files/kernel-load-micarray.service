@@ -4,7 +4,7 @@ After=network.target bb-wl18xx-bluetooth.service
 
 [Service]
 Type=simple
-ExecStart=/bin/bash /home/root/mixes/Init_For_Starting.sh
+ExecStart=/bin/bash /home/root/container/init_pins.sh
 #Restart=on-failure
 #RestartSec=1
 

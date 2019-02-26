@@ -2,14 +2,19 @@
 #GPIO66 as NRST PIN
 #GPIO48 as INPUT PIN
 #GPIO67 as OUTPUT PIN
+#GPIO30 as INPUT_PIN
+#GPIO86 as OUTPUT_PIN
+
 echo 49 > /sys/class/gpio/export
 echo 66 > /sys/class/gpio/export
 #echo 48 > /sys/class/gpio/export
 echo 67 > /sys/class/gpio/export
+echo 86 > /sys/class/gpio/export
 
 echo out > /sys/class/gpio/gpio49/direction
 #echo out > /sys/class/gpio/gpio66/direction
 #echo out > /sys/class/gpio/gpio67/direction
+echo out > /sys/class/gpio/gpio86/direction
 
 #Stop empty effect
 echo 1 > /sys/class/gpio/gpio67/value
