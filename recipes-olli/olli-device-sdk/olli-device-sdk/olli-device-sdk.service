@@ -4,7 +4,7 @@ After=network.target bb-wl18xx-bluetooth.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/node /home/root/music-player/apps.js  > /dev/null 2 >&1
+ExecStart=/usr/bin/node /home/root/olli-device-sdk/Apps/app.js  > /dev/null 2 >&1
 Restart=on-failure
 #RestartSec=1
 

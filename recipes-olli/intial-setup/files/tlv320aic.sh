@@ -101,14 +101,6 @@ i2cset -y -f 1 0x18 0x09 0x0c
 # Select Page 0
 i2cset -y -f 1 0x18 0x00 0x00
 #
-# Set DOUT as INT1
-#i2cset -y -f 1 0x18 0x35 0x08
-#
-# Set INT1 Interrupt for Headset Insertion Event
-#i2cset -y -f 1 0x18 0x30 0x80
-#
-# Headset Detection Enabled
-#i2cset -y -f 1 0x18 0x43 0x80
 
 #
 # DAC => 0dB
@@ -123,6 +115,6 @@ i2cset -y -f 1 0x18 0x40 0x00
 #
 
 sleep 1
-#set PCM as 70%
-amixer sset PCM 70%
+#set PCM as 50%
+amixer sset PCM 50%
 

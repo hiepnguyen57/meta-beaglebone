@@ -115,9 +115,8 @@ MQTT = " \
 
 OLLI_APPS = " \
     intial-setup \
-    music-player \
+    olli-device-sdk \
     dfu-util \
-    wifi-manager \
  "
 
 IMAGE_INSTALL += " \

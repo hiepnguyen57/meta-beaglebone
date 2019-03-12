@@ -1,0 +1,13 @@
+[Unit]
+Description=wifi access point Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/iw phy phy0 interface add SoftAp0 type managed
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
