@@ -41,27 +41,16 @@ ARCHFLAGS_arm = "${@bb.utils.contains('TUNE_FEATURES', 'callconvention-hard', '-
 GYP_DEFINES_append_mipsel = " mips_arch_variant='r1' "
 ARCHFLAGS ?= ""
 
-# # Node is way too cool to use proper autotools, so we install two wrappers to forcefully inject proper arch cflags to workaround gypi
-# do_configure () {
-#     rm -rf ${S}/deps/openssl
-#     export LD="${CXX}"
-#     GYP_DEFINES="${GYP_DEFINES}" export GYP_DEFINES
-#     # $TARGET_ARCH settings don't match --dest-cpu settings
-#    ./configure --prefix=${prefix} --without-intl --without-snapshot --shared-openssl --shared-zlib \
-#                --dest-cpu="${@map_nodejs_arch(d.getVar('TARGET_ARCH'), d)}" \
-#                --dest-os=linux \
-#                ${ARCHFLAGS}
-# }
-
+# Node is way too cool to use proper autotools, so we install two wrappers to forcefully inject proper arch cflags to workaround gypi
 do_configure () {
-  export LD="${CXX}"
-  GYP_DEFINES="${GYP_DEFINES}" export GYP_DEFINES
-  ./configure   --prefix="${prefix}" \
-        --dest-cpu="${@nodejs_map_dest_cpu(d.getVar('TARGET_ARCH', True), d)}" \
-        --dest-os=linux ${ARCHFLAGS} \
-        --without-snapshot \
-        --with-intl=none \
-        ${PACKAGECONFIG_CONFARGS}
+    rm -rf ${S}/deps/openssl
+    export LD="${CXX}"
+    GYP_DEFINES="${GYP_DEFINES}" export GYP_DEFINES
+    # $TARGET_ARCH settings don't match --dest-cpu settings
+   ./configure --prefix=${prefix} --without-intl --without-snapshot --shared-openssl --shared-zlib \
+               --dest-cpu="${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}" \
+               --dest-os=linux \
+               ${ARCHFLAGS}
 }
 
 do_compile () {

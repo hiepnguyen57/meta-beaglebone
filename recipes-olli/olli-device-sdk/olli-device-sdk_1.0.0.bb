@@ -3,7 +3,7 @@ DESCRIPTION = "Interface with user by using voice control"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://README.md;md5=4f6e52a216db167c77c701face423393"
 HOMEPAGE = "https://github.com/olli-ai/olli-device-sdk.git"
-SRCREV = "3042c9e95e58bb4c866d47e5597d2cda3b427588"
+SRCREV = "140a6caf3a90ed134224dc3703ef6105a8ebc248"
 SRC_URI = " \
 			git://git@github.com/olli-ai/olli-device-sdk.git;protocol=ssh;branch=master \
 			file://olli-device-sdk.service \
