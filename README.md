@@ -1,7 +1,5 @@
-# Meta-olli
-by hiep@olli-ai.com
-
-[Home Page] (https://olli-ai.com)
+# Meta-beaglebone
+by hoahiepk10@gmail.com
 
 Version: 1.0.1 (02/12/2019)
 
@@ -87,11 +85,11 @@ git clone https://github.com/imyller/meta-nodejs.git
 cd meta-nodejs         
 git checkout -b morty eec531e97a17bfd406f3bf76dee4057dcf5286a4
 ```
-### Clone the `meta-olli` repository
+### Clone the `meta-beaglebone` repository
 
 ```
 cd $WORK
-git clone git@github.com:olli-ai/meta-olli.git
+git clone git@github.com:hiepnguyen57/meta-beaglebone.git
 ```
 ## Building
 
@@ -266,6 +264,3 @@ cd $WORK/meta-olli/scripts/booting
 sudo ./bring_up.sh $WORK/build/tmp 
 
 ```
-
-# OLLI-FIRMWARE-TEAM
-## We are a small group of engineers and researchers who strongly believe in the uptapped power of Artificial Intelligence
